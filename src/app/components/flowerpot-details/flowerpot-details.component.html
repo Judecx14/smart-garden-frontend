@@ -1,0 +1,28 @@
+<div class="row mb-3">
+  <div class="col text-center"><h2>Detalles de la planta</h2></div>
+</div>
+<div class="row">
+  <div class="col-3">
+    <img src="assets/img/flower.png" alt="profile" style="height: 200px; width: 200px">
+  </div>
+  <div class="col-6">
+    <div class="form">
+      <div>
+        <label for="category" class="form-label">Categoria:</label>
+        <input id="category" class="form-control" type="text" readonly [(ngModel)]="category">
+      </div>
+      <div>
+        <label for="type" class="form-label">Tipo de planta:</label>
+        <input id="type" class="form-control" type="text" readonly [(ngModel)]="type">
+      </div>
+      <div>
+        <label for="irrigation" class="form-label">Riego:</label>
+        <input id="irrigation" class="form-control" type="text" readonly [(ngModel)]="irrigation">
+      </div>
+    </div>
+  </div>
+  <div class="col-3">
+    <h3>¿Porque son importantes estos datos?</h3>
+    <p>Las plantas tienen cuidados diferentes, no todas las plantas se riegan diario</p>
+  </div>
+</div>

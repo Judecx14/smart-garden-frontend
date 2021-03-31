@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col"><h2>PERFIL</h2></div>
+</div>
+<div class="row">
+  <div class="col-3">
+    <img src="assets/img/profileimg.png" alt="profile" style="height: 200px; width: 200px">
+  </div>
+  <div class="col-6">
+    <div class="form">
+      <div>
+        <label for="name" class="form-label">Nombre:</label>
+        <input id="name" class="form-control" type="text" readonly [(ngModel)]="name">
+      </div>
+      <div>
+        <label for="lastname" class="form-label">Apellidos:</label>
+        <input id="lastname" class="form-control" type="text" readonly [(ngModel)]="lastname">
+      </div>
+      <div>
+        <label for="mail" class="form-label">Correo:</label>
+        <input id="mail" class="form-control" type="text" readonly [(ngModel)]="mail">
+      </div>
+      <div>
+        <label for="password" class="form-label">Contraseña:</label>
+      </div>
+      <button id="password" class="btn btn-info rounded">cambiar contraseña</button>
+    </div>
+  </div>
+  <div class="col-3">
+    <img src="assets/img/worldgreen.png" alt="world" style="height: 250px; width: 200px">
+  </div>
+</div>
