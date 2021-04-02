@@ -3,6 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {ChartsModule} from 'ng2-charts';
 
 // Royters
 import {APP_ROUTING} from './routes/router';
@@ -10,12 +11,22 @@ import {APP_ROUTING} from './routes/router';
 import {AppComponent} from './app.component';
 import { ProfileComponent } from './components/Master/profile/profile.component';
 import { FlowerpotDetailsComponent } from './components/flowerpot-details/flowerpot-details.component';
+import { SensorDetailsComponent } from './components/sensor-details/sensor-details.component';
+import { BarChartComponent } from './components/Master/bar-chart/bar-chart.component';
+import { DoughnutChartComponent } from './components/Master/doughnut-chart/doughnut-chart.component';
+import { RadarChartComponent } from './components/Master/radar-chart/radar-chart.component';
+import { PieChartComponent } from './components/Master/pie-chart/pie-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
-    FlowerpotDetailsComponent
+    FlowerpotDetailsComponent,
+    SensorDetailsComponent,
+    BarChartComponent,
+    DoughnutChartComponent,
+    RadarChartComponent,
+    PieChartComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +34,8 @@ import { FlowerpotDetailsComponent } from './components/flowerpot-details/flower
     APP_ROUTING,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

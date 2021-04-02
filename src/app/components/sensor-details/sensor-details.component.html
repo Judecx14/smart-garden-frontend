@@ -1,0 +1,64 @@
+<div class="row mb-3">
+  <div class="col text-center"><h2>Detalles del sensor</h2></div>
+</div>
+<div class="row justify-content-center mb-3">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a [routerLink]="['bar-chart']" class="nav-link">Bar Chart</a>
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="['doughnut-chart']" class="nav-link">Doughnut Chart</a>
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="['radar-chart']" class="nav-link">Radar Chart</a>
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="['pie-chart']" class="nav-link">Pie Chart</a>
+    </li>
+  </ul>
+</div>
+<div class="row mb-5">
+  <div class="col-6">
+    <div class="form">
+      <div>
+        <label for="flowerpot" class="form-label">Planta:</label>
+        <input id="flowerpot" class="form-control" type="text" readonly [(ngModel)]="flowerpot">
+      </div>
+      <div>
+        <label for="name" class="form-label">Nombre:</label>
+        <input id="name" class="form-control" type="text" readonly [(ngModel)]="name">
+      </div>
+      <div>
+        <label for="type" class="form-label">Tipo:</label>
+        <input id="type" class="form-control" type="text" readonly [(ngModel)]="type">
+      </div>
+      <div>
+        <label for="pins" class="form-label">Pines:</label>
+        <input id="pins" class="form-control" type="text" readonly [(ngModel)]="pins">
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<div class="row mb-3">
+  <div class="col text-center">
+    <h3>TABLE</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="table-responsive"></div>
+    <table class="table">
+      <tr class="text-info">
+        <td>Nombre</td>
+        <td>Data</td>
+      </tr>
+      <tr *ngFor="let data of dataArray">
+        <td>{{data.name}}</td>
+        <td>{{data.fecha}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
