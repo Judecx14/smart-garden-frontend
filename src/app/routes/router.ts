@@ -6,6 +6,7 @@ import {BarChartComponent} from '../components/Master/bar-chart/bar-chart.compon
 import {DoughnutChartComponent} from '../components/Master/doughnut-chart/doughnut-chart.component';
 import {RadarChartComponent} from '../components/Master/radar-chart/radar-chart.component';
 import {PieChartComponent} from '../components/Master/pie-chart/pie-chart.component';
+import {AuthGuardService} from '../services/guard/auth-guard.service';
 // import {LoginComponent} from '../components/master-components/login/login.component';
 // import {RegisterComponent} from '../components/master-components/register/register.component';
 // import {HomeComponent} from '../components/home/home.component';
@@ -17,8 +18,8 @@ const APP_ROUTES: Routes = [
   // {path: 'home', component: HomeComponent},
   // {path: 'login', component: LoginComponent},
   // {path: 'register', component: RegisterComponent},
-  {path: 'profile', component: ProfileComponent}, // , canActivate: [AuthGuardService]
-  {path: 'flowerpot/details', component: FlowerpotDetailsComponent}, // , canActivate: [AuthGuardService]
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
+  {path: 'flowerpot/details', component: FlowerpotDetailsComponent, canActivate: [AuthGuardService]},
   {
     path: 'flowerpot/sensor-details',
     component: SensorDetailsComponent,
@@ -28,7 +29,8 @@ const APP_ROUTES: Routes = [
       {path: 'radar-chart', component: RadarChartComponent},
       {path: 'pie-chart', component: PieChartComponent}
     ]
-  }, // , canActivate: [AuthGuardService]
+    , canActivate: [AuthGuardService]
+  }
   // {path: '', component: HomeComponent},
   // {path: '**', pathMatch: 'full', component: Page404Component}
 ];
