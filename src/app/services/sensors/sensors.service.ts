@@ -14,7 +14,6 @@ import {Measure} from '../../classes/measure';
 export class SensorsService {
 
   constructor(private http: HttpClient) {
-
   }
 
   createSensor(sensor: Sensor): Observable<any> {
@@ -139,5 +138,9 @@ export class SensorsService {
 
   showFlowerpotByCategory(category: string): Observable<any> {
     return this.http.get(`${environment.apiRoutes}Flowerpot/show?category=${category}`);
+  }
+
+  showMeasurementsByDate(id: number, date: string): Observable<any> {
+    return this.http.get(`${environment.apiRoutes}Measure/showDate?id=${id}&date=${date}`);
   }
 }

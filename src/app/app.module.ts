@@ -8,7 +8,6 @@ import { CookieService } from 'ngx-cookie-service';
 
 // Royters
 import {APP_ROUTING} from './routes/router';
-
 import {AppComponent} from './app.component';
 import { ProfileComponent } from './components/Master/profile/profile.component';
 import { FlowerpotDetailsComponent } from './components/flowerpot-details/flowerpot-details.component';
@@ -22,6 +21,7 @@ import { LoginComponent } from './components/Master/login/login.component';
 import { RegisterComponent } from './components/Master/register/register.component';
 import { FooterComponent } from './components/Master/footer/footer.component';
 import { Wildcard404Component } from './components/Master/wildcard404/wildcard404.component';
+import {DatepickerModule} from 'ng2-datepicker';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,8 @@ import { Wildcard404Component } from './components/Master/wildcard404/wildcard40
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ChartsModule
+    ChartsModule,
+    DatepickerModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

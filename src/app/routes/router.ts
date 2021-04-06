@@ -29,7 +29,7 @@ const APP_ROUTES: Routes = [
       {path: 'radar-chart', component: RadarChartComponent},
       {path: 'pie-chart', component: PieChartComponent}
     ]
-    , canActivate: [AuthGuardService]
+    // , canActivate: [AuthGuardService]
   }
   // {path: '', component: HomeComponent},
   // {path: '**', pathMatch: 'full', component: Page404Component}

@@ -39,12 +39,21 @@
     </div>
   </div>
   <div class="col-6">
-    <router-outlet></router-outlet>
+    <app-bar-chart [data]="data"></app-bar-chart>
+<!--    <router-outlet [data]="data"></router-outlet>-->
   </div>
 </div>
-<div class="row mb-3">
+<div class=" row mb-3
+    ">
   <div class="col text-center">
     <h3>TABLE</h3>
+  </div>
+</div>
+<div class="row justify-content-center mb-3">
+  <div class="col text-center">
+    <h5>Seleccion de Fecha</h5>
+    <ngx-datepicker [(ngModel)]="date"></ngx-datepicker>
+    <button class="btn btn-info" (click)="printDate(); getData();">print date</button>
   </div>
 </div>
 <div class="row">
