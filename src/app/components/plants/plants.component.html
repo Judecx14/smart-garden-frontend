@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-sm spaceUp">
+    <p class="title mx-auto d-block">Mis plantas.</p>
+    <button type="button" class="btn btn-outline-secondary btn-lg buttonAdd"
+            data-toggle="modal"
+            data-target="#modalFlower">
+      +
+    </button>
+    <br>
+    <div style="overflow-y: scroll; height: 50vh; width: 420px">
+      <div *ngFor="let flowerpot of flowerpots" routerLink="flowerpot/{{flowerpot.id}}">
+        <div class="card bg-primary mt-2" style="align-items: flex-start; width: 400px; height: 100px">
+          <div class="card-body">
+            <h5 class="text-light">{{flowerpot.name}}</h5>
+            <p class="text-light">{{flowerpot.spice}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm spaceImg">
+    <img
+      src="assets/img/planta.png"
+      class="mx-auto d-block"
+      alt=""
+      width="250"
+      height="250"
+    />
+    <div class="spaceTxt mx-auto d-block">
+      <p>
+        En este apartado encontraras las plantas que tengas bajo tu preciado
+        cuidado, además podrás monitorear las condiciones en las que se
+        encuentran.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalFlower" tabindex="-1" aria-labelledby="modalFlower" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-dark text-light">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel1">Añadir planta</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form">
+          <div>
+            <label for="nameedit" class="form-label">Nombre:</label>
+            <input id="nameedit" class="form-control" type="text" [(ngModel)]="flowerpot.name">
+          </div>
+          <div>
+            <label for="spiceedit" class="form-label">Especie:</label>
+            <input id="spiceedit" class="form-control" type="text" [(ngModel)]="flowerpot.spice">
+          </div>
+          <div>
+
+          </div>
+          <div>
+            <label for="categoryedit" class="form-label">Categoria:</label>
+            <select id="categoryedit" class="form-select form-select-lg mb-3 form-control"
+                    aria-label=".form-select-lg example" [(ngModel)]="flowerpot.category">
+              <option value="1">Tropical</option>
+              <option value="2">Seco</option>
+              <option value="3">Templado</option>
+              <option value="4">Frio</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-light" (click)="addFlowerpot()" data-dismiss="modal">
+          Añadir
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="content-graph">
+        <h2 class="title">Graficas y Detalles de Lectura.</h2>
+        <div class="graph size-graph mx-auto d-block">
+            <div>
+                <div>
+                  <p class="subtitle">Grafica de Lecturas.</p>
+                  <div style="display: block">
+                    <canvas baseChart
+                      [datasets]="barChartData"
+                      [labels]="barChartLabels"
+                      [options]="barChartOptions"
+                      [legend]="barChartLegend"
+                      [chartType]="barChartType">
+                    </canvas>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-outline-primary mx-auto d-block" style="width: 65%;" mat-button mat-raised-button  (click)="randomize()">Actualizar</button>
+    </div>
+</div>

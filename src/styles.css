@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+.x {
+  border-radius: 3px;
+  background: linear-gradient(
+    60deg, #0a532a, #25cf05);
+  padding: 15px;
+  margin-top: -20px;
+  margin-right: 15px;
+  float: left;
+  width: 70px;
+  height: 70px;
+}

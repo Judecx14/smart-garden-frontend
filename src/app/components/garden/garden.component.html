@@ -1,0 +1,57 @@
+<div class="container p-4">
+  <div class="row">
+    <div class="col-lg-5 col-md-7 mb-4 mb-md-0">
+      <h3>Mis Jardines</h3>
+      <input style="align-items: flex-start; width: 400px; height: 100px;" type="button" class="btn btn-primary"
+             name="+" value="+" data-toggle="modal"
+             data-target="#modalGarden">
+      <br>
+      <div style="overflow-y: scroll; height: 50vh;">
+        <div *ngFor="let garden of gardens" routerLink="flowerpots/{{garden.id}}">
+          <div class="card bg-primary mt-2" style="align-items: flex-start; width: 400px; height: 100px">
+            <div class="card-body">
+              <h5 class="text-light">{{garden.name}}</h5>
+              <p class="text-light">{{garden.location}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+      <img src="assets/img/jardineria.png" width="200" height="200">
+    </div>
+    <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+      <h5 style="padding-top: 40%;">Información de panel.</h5>
+      <p>En este apartado podrás encontrar tus jardines y podrás crear nuevos para asi monitorear a tus plantas.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalGarden" tabindex="-1" aria-labelledby="modalGarden" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-dark text-light">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel1">Añadir Jardin</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form">
+          <div>
+            <label for="nameedit" class="form-label">Nombre:</label>
+            <input id="nameedit" class="form-control" type="text" [(ngModel)]="newGarden.name">
+          </div>
+          <div>
+            <label for="lastnameedit" class="form-label">Ubicación:</label>
+            <input id="lastnameedit" class="form-control" type="text" [(ngModel)]="newGarden.location">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-light" (click)="addGarden()" data-dismiss="modal">
+          Añadir
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

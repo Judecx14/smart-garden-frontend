@@ -3,29 +3,62 @@
 </div>
 <div class="row">
   <div class="col-3">
-    <img src="assets/img/profileimg.png" alt="profile" style="height: 200px; width: 200px">
+    <img src="assets/img/team.png" alt="profile" style="height: 200px; width: 200px">
   </div>
   <div class="col-6">
     <div class="form">
       <div>
         <label for="name" class="form-label">Nombre:</label>
-        <input id="name" class="form-control" type="text" readonly [(ngModel)]="name">
+        <input id="name" class="form-control" type="text" readonly [(ngModel)]="details.name">
       </div>
       <div>
         <label for="lastname" class="form-label">Apellidos:</label>
-        <input id="lastname" class="form-control" type="text" readonly [(ngModel)]="lastname">
+        <input id="lastname" class="form-control" type="text" readonly [(ngModel)]="details.lastName">
       </div>
       <div>
         <label for="mail" class="form-label">Correo:</label>
-        <input id="mail" class="form-control" type="text" readonly [(ngModel)]="mail">
+        <input id="mail" class="form-control" type="text" readonly [(ngModel)]="details.email">
       </div>
-      <div>
-        <label for="password" class="form-label">Contraseña:</label>
-      </div>
-      <button id="password" class="btn btn-info rounded">cambiar contraseña</button>
     </div>
+    <button type="button" class="btn btn-info btn-block mt-2" data-toggle="modal"
+            data-target="#modalUser">Editar
+    </button>
   </div>
   <div class="col-3">
-    <img src="assets/img/worldgreen.png" alt="world" style="height: 250px; width: 200px">
+    <img src="assets/img/el-planeta-tierra.png" alt="world" style="height: 200px; width: 200px">
+  </div>
+</div>
+
+<!-- Modal User -->
+<div class="modal fade" id="modalUser" tabindex="-1" aria-labelledby="modalUser" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-dark text-light">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel1">Editar usuario</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form">
+          <div>
+            <label for="nameedit" class="form-label">Nombre:</label>
+            <input id="nameedit" class="form-control" type="text" [(ngModel)]="details.name">
+          </div>
+          <div>
+            <label for="lastnameedit" class="form-label">Apellidos:</label>
+            <input id="lastnameedit" class="form-control" type="text" [(ngModel)]="details.lastName">
+          </div>
+          <div>
+            <label for="mailedit" class="form-label">Correo:</label>
+            <input id="mailedit" class="form-control" type="text" [(ngModel)]="details.email">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-light" (click)="updateUser()" data-dismiss="modal">
+          Actualizar
+        </button>
+      </div>
+    </div>
   </div>
 </div>

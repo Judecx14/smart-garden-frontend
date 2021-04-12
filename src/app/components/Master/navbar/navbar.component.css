@@ -1,0 +1,5 @@
+.navbar-transparent {
+  background: 0 0 !important;
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+}

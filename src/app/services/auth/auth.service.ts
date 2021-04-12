@@ -43,7 +43,7 @@ export class AuthService {
   }
 
   public updateUser(user: User, id): Observable<User> {
-    return this.http.put<User>(environment.serverRoutes + `update/${id}`, user);
+    return this.http.put<User>(environment.serverRoutes + `update?id=${id}`, user);
   }
 
   public login(user: User): Observable<any> {

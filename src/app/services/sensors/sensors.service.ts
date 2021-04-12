@@ -7,6 +7,7 @@ import {Flowerpot} from '../../classes/flowerpot';
 import {Category} from '../../classes/category';
 import {FlowerpotSensor} from '../../classes/flowerpot-sensor';
 import {Measure} from '../../classes/measure';
+import {Garden} from '../../classes/garden';
 
 @Injectable({
   providedIn: 'root'
@@ -21,19 +22,23 @@ export class SensorsService {
   }
 
   createFlowerpot(flowerpot: Flowerpot): Observable<any> {
-    return this.http.post(`${environment.apiRoutes}newSensor`, flowerpot);
+    return this.http.post(`${environment.apiRoutes}newFlowerpot`, flowerpot);
   }
 
   createCategory(category: Category): Observable<any> {
-    return this.http.post(`${environment.apiRoutes}newSensor`, category);
+    return this.http.post(`${environment.apiRoutes}newCategory`, category);
   }
 
   createFlowerpotSensor(flowerpotSensor: FlowerpotSensor): Observable<any> {
-    return this.http.post(`${environment.apiRoutes}newSensor`, flowerpotSensor);
+    return this.http.post(`${environment.apiRoutes}newFlowerpotSensor`, flowerpotSensor);
   }
 
   createMeasure(measure: Measure): Observable<any> {
-    return this.http.post(`${environment.apiRoutes}newSensor`, measure);
+    return this.http.post(`${environment.apiRoutes}newMeasure`, measure);
+  }
+
+  createGarden(garden: Garden): Observable<any> {
+    return this.http.post(`${environment.apiRoutes}newGarden`, garden);
   }
 
   indexSensor(): Observable<any> {
@@ -56,6 +61,10 @@ export class SensorsService {
     return this.http.get(`${environment.apiRoutes}Measure/index`);
   }
 
+  indexGarden(): Observable<any> {
+    return this.http.get(`${environment.apiRoutes}Garden/index`);
+  }
+
   showSensor(id: number): Observable<any> {
     return this.http.get(`${environment.apiRoutes}Sensor/show?id=${id}`);
   }
@@ -74,6 +83,10 @@ export class SensorsService {
 
   showMeasure(id: number): Observable<any> {
     return this.http.get(`${environment.apiRoutes}Measure/show?id=${id}`);
+  }
+
+  showGarden(id: number): Observable<any> {
+    return this.http.get(`${environment.apiRoutes}Garden/show?id=${id}`);
   }
 
   deleteSensor(id: number): Observable<any> {
@@ -96,6 +109,10 @@ export class SensorsService {
     return this.http.delete(`${environment.apiRoutes}Measure/delete?id=${id}`);
   }
 
+  deleteGarden(id: number): Observable<any> {
+    return this.http.delete(`${environment.apiRoutes}Garden/delete?id=${id}`);
+  }
+
   updateSensor(sensor: Sensor): Observable<any> {
     return this.http.put(`${environment.apiRoutes}Sensor/update`, sensor);
   }
@@ -116,12 +133,16 @@ export class SensorsService {
     return this.http.put(`${environment.apiRoutes}MeasureSensor/update`, measure);
   }
 
+  updateGarden(garden: Garden): Observable<any> {
+    return this.http.put(`${environment.apiRoutes}MeasureSensor/update`, garden);
+  }
+
   showSensorMeasure(id: number): Observable<any> {
     return this.http.get(`${environment.apiRoutes}Sensor/showMeasure?id=${id}`);
   }
 
-  showFlowerpotSensorsMeasure(id: number): Observable<any> {
-    return this.http.get(`${environment.apiRoutes}Flowerpot/showFLSN?id=${id}`);
+  showFlowerpotSensorsMeasure(id: number, date: string, date2: string): Observable<any> {
+    return this.http.get(`${environment.apiRoutes}Flowerpot/showFLSN?id=${id}&date=${date}&date2=${date2}`);
   }
 
   showSensorByName(name: string): Observable<any> {
@@ -142,5 +163,13 @@ export class SensorsService {
 
   showMeasurementsByDate(id: number, date: string): Observable<any> {
     return this.http.get(`${environment.apiRoutes}Measure/showDate?id=${id}&date=${date}`);
+  }
+
+  showFlowerpotByGarden(garden: number): Observable<any> {
+    return this.http.get(`${environment.apiRoutes}Flowerpot/showByGarden?garden=${garden}`);
+  }
+
+  showGardenByUser(id: number): Observable<any> {
+    return this.http.get(`${environment.apiRoutes}Garden/showByUser?id=${id}`);
   }
 }

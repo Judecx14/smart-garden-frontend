@@ -1,0 +1,105 @@
+<div class="row justify-content-center">
+  <div class="col text-center">
+    <button class="btn btn-primary" data-toggle="modal" data-target="#modalAddSensor">Añadir sensor
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="container">
+      <div class="content-graph">
+        <h2 class="title">Graficas y Detalles de Lectura.</h2>
+        <div class="graph size-graph mx-auto d-block">
+          <div class="inputs">
+            <div class="row">
+              <div class="col-sm">
+                <input class="form-control" type="date" [(ngModel)]="selectDate"/>
+              </div>
+              <div class="col-sm">
+                <input class="form-control" type="date" [(ngModel)]="selectDate2"/>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div>
+              <p class="subtitle">Grafica de Lecturas.</p>
+              <div style="display: block">
+                <canvas baseChart
+                        [datasets]="barChartData"
+                        [labels]="barChartLabels"
+                        [options]="barChartOptions"
+                        [legend]="barChartLegend"
+                        [chartType]="barChartType">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-outline-primary mx-auto d-block" style="width: 65%;" mat-button mat-raised-button
+                (click)="getData()">Actualizar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="space-info">
+  <div class="row">
+    <div class="col-sm">
+      <div>
+        <h3 class="title">Lecturas.</h3>
+        <div>
+          <p class="primary">Temperatura: {{lastTemp}}°C. {{lastTime}} horas</p>
+          <hr/>
+          <p class="succes">Humedad: {{lastHum}}%. {{lastTime}} horas</p>
+          <hr/>
+          <p class="information">Humedad de la tierra: 10%. 23/03/21 17:45 horas</p>
+          <hr/>
+          <p class="danger">Índice UV: 0. 23/03/21 17:45 horas</p>
+          <hr/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalAddSensor" tabindex="-1" aria-labelledby="modalAddSensor" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-dark text-light">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel1">Añadir sensor</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form">
+          <div>
+            <label for="name" class="form-label">Nombre:</label>
+            <input id="name" class="form-control" type="text" [(ngModel)]="sensor.name">
+          </div>
+          <div>
+            <label for="pins" class="form-label">Pines:</label>
+            <input id="pins" class="form-control" type="text" [(ngModel)]="sensor.pins">
+          </div>
+          <div>
+
+          </div>
+          <div>
+            <label for="type" class="form-label">Tipo:</label>
+            <select id="type" class="form-select form-select-lg mb-3 form-control"
+                    aria-label=".form-select-lg example" [(ngModel)]="sensor.type">
+              <option value="DHT-11">Humedad y Temperatura</option>
+              <option value="HL-69">Humedad del suelo</option>
+              <option value="ML85">Ultravioleta</option>
+              <option Value="WaterPump">Bomba de agua</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-light" (click)="addSensor()" data-dismiss="modal">
+          Añadir
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

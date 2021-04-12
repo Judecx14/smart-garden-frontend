@@ -1,0 +1,25 @@
+.title{
+    color: #117c7c;
+    font-size: 40px;
+    text-align: center;
+    font-weight: 400;
+}
+
+.content-graph{
+    margin-top: 25px;
+}
+
+.graph{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.size-graph{
+    width: 85%;
+}
+
+.subtitle{
+    color: #117c7c;
+    font-size: 25px;
+}
+

@@ -1,5 +1,5 @@
 export class Sensor {
-  id: number;
+  id?: number;
   name: string;
   pins: string;
   type: string;

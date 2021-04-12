@@ -1,0 +1,44 @@
+.spaceUp{
+  margin-top: 50px;
+}
+
+.spaceImg{
+  margin-top: 70px;
+}
+
+.title{
+  color: #117c7c;
+  font-size: 40px;
+  text-align: center;
+}
+
+.buttonAdd{
+  margin-top: 25px;
+  width: 400px;
+  text-align: center;
+  font-size: 50px;
+  height: 125px;
+  border-width: 2px;
+  border-radius: 0%;
+}
+
+
+.spaceTxt{
+  width: 60%;
+  margin-top: 30px;
+}
+
+.space-modal{
+  margin-top: 100px;
+}
+
+.unborder{
+  border-style: none;
+}
+
+.title-qr{
+  font-size: 20px;
+  font-weight: bold;
+  color: #454545;
+  text-align: center;
+}

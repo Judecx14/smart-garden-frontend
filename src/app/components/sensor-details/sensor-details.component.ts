@@ -3,6 +3,7 @@ import {Chart} from 'node_modules/chart.js';
 import {Router} from '@angular/router';
 import {DatepickerOptions} from 'ng2-datepicker';
 import {SensorsService} from '../../services/sensors/sensors.service';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-sensor-details',
@@ -36,7 +37,12 @@ export class SensorDetailsComponent implements OnInit {
   }
 
   getData(): void {
-    this.sensorService.showFlowerpotSensorsMeasure(this.flowerpotID).subscribe(data => {
+    const date = formatDate(new Date(), 'yyyy-MM-dd', 'en');
+    const year = new Date().getFullYear();
+    const day = new Date().getDate() + 1;
+    const month = new Date().getMonth() + 1;
+    const date2 = year + '-' + month + '-' + day;
+    this.sensorService.showFlowerpotSensorsMeasure(this.flowerpotID, date, date2).subscribe(data => {
       this.data = data;
       console.log(this.data);
     });

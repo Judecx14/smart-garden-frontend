@@ -1,0 +1,28 @@
+<div>
+  <h3 class="title">Lecturas.</h3>
+  <div class="inputs">
+    <div class="row">
+      <div class="col-sm">
+        <input class="form-control" type="date" name="" id=""/>
+      </div>
+      <div class="col-sm">
+        <select class="form-control" aria-label="Actuador...">
+          <option disabled selected>Actuadores...</option>
+          <option value="1">Bomba</option>
+          <option value="2">Ventilador</option>
+          <option value="3">Luz UV</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div>
+    <p class="primary">Temperatura: {{dataTemp[0].temperature}}°C. {{dataTemp[0].created_at.slice(11,-5)}} horas</p>
+    <hr/>
+    <p class="succes">Humedad: 35%. 23/03/21 17:45 horas</p>
+    <hr/>
+    <p class="information">Humedad de la tierra: 10%. 23/03/21 17:45 horas</p>
+    <hr/>
+    <p class="danger">Índice UV: 0. 23/03/21 17:45 horas</p>
+    <hr/>
+  </div>
+</div>
