@@ -16,36 +16,27 @@ import {QrCodeComponent} from '../components/qr-code/qr-code.component';
 import {PlantsComponent} from '../components/plants/plants.component';
 import {Wildcard404Component} from '../components/Master/wildcard404/wildcard404.component';
 import {GraphicsComponent} from '../components/details/graphics/graphics.component';
-// import {LoginComponent} from '../components/master-components/login/login.component';
-// import {RegisterComponent} from '../components/master-components/register/register.component';
-// import {HomeComponent} from '../components/home/home.component';
-// import {ProfileComponent} from '../components/profile/profile.component';
-// import {Page404Component} from '../components/wildcards/page404/page404.component';
-// import {AuthGuardService} from '../services/auth-guard/auth-guard.service';
 
 const APP_ROUTES: Routes = [
   {path: 'home', component: IndexComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'gardens', component: GardenComponent},
-  {path: 'flowerpot/graphics', component: FlowerpotGraphicsComponent},
-  {path: 'flowerpot/qr', component: QrCodeComponent},
-  {path: 'gardens/flowerpots/:id', component: PlantsComponent},
-  {path: 'gardens/flowerpots/:i/flowerpot/:id', component: GraphicsComponent},
-  // , canActivate: [AuthGuardService]},
-  {path: 'flowerpot/details/', component: FlowerpotDetailsComponent},
-  // , canActivate: [AuthGuardService]},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
+  {path: 'gardens', component: GardenComponent, canActivate: [AuthGuardService]},
+  {path: 'flowerpot/graphics', component: FlowerpotGraphicsComponent, canActivate: [AuthGuardService]},
+  {path: 'flowerpot/qr', component: QrCodeComponent, canActivate: [AuthGuardService]},
+  {path: 'gardens/flowerpots/:id', component: PlantsComponent, canActivate: [AuthGuardService]},
+  {path: 'gardens/flowerpots/:i/flowerpot/:id', component: GraphicsComponent, canActivate: [AuthGuardService]},
+  {path: 'flowerpot/details/', component: FlowerpotDetailsComponent, canActivate: [AuthGuardService]},
   {
-    path: 'flowerpot/sensor-details',
+    path: 'gardens/flowerpots/:i/flowerpot/:i/sensor-details/:id',
     component: SensorDetailsComponent,
     children: [
       {path: 'bar-chart', component: BarChartComponent},
       {path: 'doughnut-chart', component: DoughnutChartComponent},
       {path: 'radar-chart', component: RadarChartComponent},
       {path: 'pie-chart', component: PieChartComponent}
-    ]
-    // , canActivate: [AuthGuardService]
+    ], canActivate: [AuthGuardService]
   },
   {path: '', component: IndexComponent},
   {path: '**', pathMatch: 'full', component: Wildcard404Component}
