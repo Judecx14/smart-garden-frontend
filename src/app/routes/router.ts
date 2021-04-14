@@ -29,7 +29,7 @@ const APP_ROUTES: Routes = [
   {path: 'gardens/flowerpots/:i/flowerpot/:id', component: GraphicsComponent, canActivate: [AuthGuardService]},
   {path: 'flowerpot/details/', component: FlowerpotDetailsComponent, canActivate: [AuthGuardService]},
   {
-    path: 'gardens/flowerpots/:i/flowerpot/:i/sensor-details/:id',
+    path: 'gardens/flowerpots/:i/flowerpot/:if/sensor-details/:id',
     component: SensorDetailsComponent,
     children: [
       {path: 'bar-chart', component: BarChartComponent},

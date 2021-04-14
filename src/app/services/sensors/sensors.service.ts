@@ -172,4 +172,8 @@ export class SensorsService {
   showGardenByUser(id: number): Observable<any> {
     return this.http.get(`${environment.apiRoutes}Garden/showByUser?id=${id}`);
   }
+
+  sensorMeasureByDate(id, date1, date2): Observable<any> {
+    return this.http.get(`${environment.apiRoutes}Sensor/showByDate?id=${id}&date1=${date1}&date2=${date2}`);
+  }
 }

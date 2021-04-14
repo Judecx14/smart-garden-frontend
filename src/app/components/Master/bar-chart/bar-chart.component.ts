@@ -1,5 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {SensorsService} from "../../../services/sensors/sensors.service";
+import {SensorsService} from '../../../services/sensors/sensors.service';
+import {ChartDataSets, ChartOptions} from 'chart.js';
 
 @Component({
   selector: 'app-bar-chart',
@@ -9,17 +10,36 @@ import {SensorsService} from "../../../services/sensors/sensors.service";
 export class BarChartComponent implements OnInit, OnChanges {
 
   @Input() data;
+  dataTemp = [];
+  dataHum = [];
+  dataLab = [];
 
-  sensorid = 3;
-  public barChartData = [
-    {data: [10, 11, 13, 15, 16, 17], label: 'series A'},
-    {data: [22, 20, 21, 19, 18, 17], label: 'series B'},
+  public barChartData: ChartDataSets[] = [
+    {
+      data: [],
+      label: 'Temperatura',
+      backgroundColor: '#31e15f',
+      hoverBackgroundColor: '#31e15f',
+    },
+    {
+      data: [],
+      label: 'Humedad',
+      backgroundColor: '#26bba7',
+      hoverBackgroundColor: '#26bba7',
+    },
   ];
-  public barChartLabels = ['1', '2', '3', '4', '5', '6'];
+  public barChartLabels = [];
   public barChartOptions = {
     scaleShowVerticalLines: false,
-    responsive: true
+    responsive: true,
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+      },
+    },
   };
+
   public barChartLegend = true;
   public barChartType = 'bar';
 
@@ -31,9 +51,21 @@ export class BarChartComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.data.currentValue !== changes.data.previousValue) {
-      // this.sensorService.showSensorMeasure(this.sensorid).subscribe(data => {
-      //   this.
-      // })
+      console.log(this.data);
+      if (this.data.measure) {
+        for (const d of this.data.measure) {
+          this.dataTemp.push(d.measurements.temperature);
+        }
+        for (const d of this.data.measure) {
+          this.dataHum.push(d.measurements.humidity);
+        }
+        for (const d of this.data.measure) {
+          this.dataLab.push(d.created_at.slice(5, -14));
+        }
+        this.barChartData[0].data = this.dataTemp.slice().reverse().slice(0, 10);
+        this.barChartData[1].data = this.dataHum.slice().reverse().slice(0, 10);
+        this.barChartLabels = this.dataLab.slice().reverse().slice(0, 10);
+      }
     }
   }
 }

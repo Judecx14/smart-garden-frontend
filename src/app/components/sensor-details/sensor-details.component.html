@@ -1,44 +1,24 @@
 <div class="row mb-3">
   <div class="col text-center"><h2>Detalles del sensor</h2></div>
 </div>
-<div class="row justify-content-center mb-3">
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a [routerLink]="['bar-chart']" class="nav-link">Bar Chart</a>
-    </li>
-    <li class="nav-item">
-      <a [routerLink]="['doughnut-chart']" class="nav-link">Doughnut Chart</a>
-    </li>
-    <li class="nav-item">
-      <a [routerLink]="['radar-chart']" class="nav-link">Radar Chart</a>
-    </li>
-    <li class="nav-item">
-      <a [routerLink]="['pie-chart']" class="nav-link">Pie Chart</a>
-    </li>
-  </ul>
-</div>
 <div class="row mb-5">
-  <div class="col-6">
+  <div class="col-4">
     <div class="form">
       <div>
         <label for="flowerpot" class="form-label">Planta:</label>
-        <input id="flowerpot" class="form-control" type="text" readonly [(ngModel)]="flowerpot">
+        <input id="flowerpot" class="form-control" type="text" readonly [(ngModel)]="flowerpot.name">
       </div>
       <div>
         <label for="name" class="form-label">Nombre:</label>
-        <input id="name" class="form-control" type="text" readonly [(ngModel)]="name">
+        <input id="name" class="form-control" type="text" readonly [(ngModel)]="data.data.name">
       </div>
       <div>
         <label for="type" class="form-label">Tipo:</label>
-        <input id="type" class="form-control" type="text" readonly [(ngModel)]="type">
-      </div>
-      <div>
-        <label for="pins" class="form-label">Pines:</label>
-        <input id="pins" class="form-control" type="text" readonly [(ngModel)]="pins">
+        <input id="type" class="form-control" type="text" readonly [(ngModel)]="data.data.type">
       </div>
     </div>
   </div>
-  <div class="col-6">
+  <div class="col-8">
     <app-bar-chart [data]="data"></app-bar-chart>
   </div>
 </div>
@@ -49,23 +29,25 @@
   </div>
 </div>
 <div class="row justify-content-center mb-3">
-  <div class="col text-center">
+  <div class="col-8 text-center">
     <h5>Seleccion de Fecha</h5>
-    <ngx-datepicker [(ngModel)]="date"></ngx-datepicker>
-    <button class="btn btn-info" (click)="printDate(); getData();">print date</button>
+    <input class="form" type="date" [(ngModel)]="selectDate"/>
+    <button class="btn btn-primary ml-3" (click)="update()">Actualizar</button>
   </div>
 </div>
 <div class="row">
   <div class="col">
     <div class="table-responsive"></div>
-    <table class="table">
+    <table class="table" style="overflow-y: scroll; height: 100px">
       <tr class="text-info">
-        <td>Nombre</td>
-        <td>Data</td>
+        <td>Temperatura</td>
+        <td>Humedad</td>
+        <td>Fecha/Hora</td>
       </tr>
-      <tr *ngFor="let data of dataArray">
-        <td>{{data.name}}</td>
-        <td>{{data.fecha}}</td>
+      <tr *ngFor="let data of measures">
+        <td>{{data.measurements.temperature}}°C</td>
+        <td>{{data.measurements.humidity}}%</td>
+        <td>{{data.created_at.slice(0, 10)}} {{data.created_at.slice(11, -5)}}</td>
       </tr>
     </table>
   </div>

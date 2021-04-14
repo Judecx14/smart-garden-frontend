@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {SensorsService} from '../../../services/sensors/sensors.service';
 import {Sensor} from '../../../classes/sensor';
@@ -6,7 +6,6 @@ import {FlowerpotSensor} from '../../../classes/flowerpot-sensor';
 import {formatDate} from '@angular/common';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';
-import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
 @Component({
   selector: 'app-graphics',

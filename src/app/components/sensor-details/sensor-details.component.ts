@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Chart} from 'node_modules/chart.js';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router, RouterLinkActive} from '@angular/router';
 import {DatepickerOptions} from 'ng2-datepicker';
 import {SensorsService} from '../../services/sensors/sensors.service';
 import {formatDate} from '@angular/common';
+import {Flowerpot} from '../../classes/flowerpot';
 
 @Component({
   selector: 'app-sensor-details',
@@ -12,39 +13,71 @@ import {formatDate} from '@angular/common';
 })
 export class SensorDetailsComponent implements OnInit {
 
-  flowerpot = 'Planta';
+  flowerpot: Flowerpot = new Flowerpot();
   name = 'sensorname';
   type = 'sensor';
   pins = '[1,2]';
-  flowerpotID = 1;
   data;
-  dataArray = [
-    {name: 1, fecha: 'fecha1'},
-    {name: 2, fecha: 'fecha2'},
-    {name: 3, fecha: 'fecha3'}
-  ];
-
+  id: number;
+  dataArray = [];
+  measures: [];
   date = new Date();
+  selectDate: string;
+  if: number;
 
-  constructor(public router: Router, private sensorService: SensorsService) {
+  constructor(public router: Router, private sensorService: SensorsService, private routerActive: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    this.data = {
+      data: {
+        name: '',
+        type: '',
+      },
+      measure: []
+    };
+    this.flowerpot = {
+      name: '',
+      spice: '',
+      category: 0,
+      garden: 0
+    };
+    this.id = this.routerActive.snapshot.params.id;
+    this.if = this.routerActive.snapshot.params.if;
+    this.getFlowerpot();
+    const d = new Date();
+    const date2 = formatDate(d, 'yyyy-MM-dd', 'en');
+    const dt = d.setDate(d.getDate() - 31);
+    const date = formatDate(dt, 'yyyy-MM-dd', 'en');
+    this.getData(date, date2);
   }
 
-  printDate(): void {
-    console.log(this.date.getDate(), this.date.getMonth() + 1, this.date.getFullYear());
+  update(): void {
+    this.setData();
   }
 
-  getData(): void {
-    const date = formatDate(new Date(), 'yyyy-MM-dd', 'en');
-    const year = new Date().getFullYear();
-    const day = new Date().getDate() + 1;
-    const month = new Date().getMonth() + 1;
-    const date2 = year + '-' + month + '-' + day;
-    this.sensorService.showFlowerpotSensorsMeasure(this.flowerpotID, date, date2).subscribe(data => {
+  table(): void {
+
+  }
+
+  setData(): void {
+    const date2 = formatDate(this.selectDate, 'yyyy-MM-dd', 'en');
+    const d = new Date(date2);
+    d.setDate(d.getDate() - 31);
+    const date = formatDate(d, 'yyyy-MM-dd', 'en');
+    this.getData(date, date2);
+  }
+
+  getData(date, date2): void {
+    this.sensorService.sensorMeasureByDate(this.id, date, date2).subscribe(data => {
       this.data = data;
-      console.log(this.data);
+      this.measures = data.measure.slice().reverse();
+    });
+  }
+
+  getFlowerpot(): void {
+    this.sensorService.showFlowerpot(this.if).subscribe(data => {
+      this.flowerpot = data;
     });
   }
 }

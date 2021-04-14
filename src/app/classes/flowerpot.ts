@@ -1,5 +1,5 @@
 export class Flowerpot {
-  id: number;
+  id?: number;
   name: string;
   spice: string;
   category: number;
