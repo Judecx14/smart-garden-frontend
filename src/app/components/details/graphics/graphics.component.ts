@@ -16,6 +16,10 @@ export class GraphicsComponent implements OnInit {
   private dataTemp: any | Array<number | number[] | null | undefined> | Chart.ChartPoint[] = [];
   private dataHum: any | Array<number | number[] | null | undefined> | Chart.ChartPoint[] = [];
   private dataDate: any | Array<number | number[] | null | undefined> | Chart.ChartPoint[] = [];
+  private dataDate2: any | Array<number | number[] | null | undefined> | Chart.ChartPoint[] = [];
+  private dataDate3: any | Array<number | number[] | null | undefined> | Chart.ChartPoint[] = [];
+  private dataHumG: any | Array<number | number[] | null | undefined> | Chart.ChartPoint[] = [];
+  private dataUV: any | Array<number | number[] | null | undefined> | Chart.ChartPoint[] = [];
 
   constructor(private router: ActivatedRoute, private sensorService: SensorsService) {
   }
@@ -62,9 +66,11 @@ export class GraphicsComponent implements OnInit {
   IDML: number;
   lastTemp: string;
   lastTime: string;
+  lastTime2: string;
+  lastTime3: string;
   lastHum: string;
-  lastGHum: string;
-  lastGTime: string;
+  lastHumG: string;
+  lastluzUV: string;
   DHT;
   HL69;
   ML85;
@@ -131,13 +137,13 @@ export class GraphicsComponent implements OnInit {
           this.DHT = item;
           if (this.DHT.measure[0]) {
             for (const d of this.DHT.measure) {
-              this.barChartData[0].data.push(d.measurements.temperature);
+              this.dataTemp.push(d.measurements.temperature);
             }
             for (const d of this.DHT.measure) {
-              this.barChartData[1].data.push(d.measurements.humidity);
+              this.dataHum.push(d.measurements.humidity);
             }
             for (const d of this.DHT.measure) {
-              this.barChartLabels.push(d.created_at.slice(0, -14) + ' ' + d.created_at.slice(11, -5));
+              this.dataDate.push(d.created_at.slice(0, -14) + ' ' + d.created_at.slice(11, -5));
             }
             const array = this.DHT.measure.slice().reverse();
             this.lastTemp = array[0].measurements.temperature;
@@ -151,18 +157,14 @@ export class GraphicsComponent implements OnInit {
           this.HL69 = item;
           if (this.HL69.measure[0]) {
             for (const d of this.HL69.measure) {
-              // this.barChartData[0].data.push(d.measurements.temperature);
+              this.dataHumG.push(d.measurements.humidity);
             }
             for (const d of this.HL69.measure) {
-              // this.barChartData[1].data.push(d.measurements.humidity);
-            }
-            for (const d of this.HL69.measure) {
-              // this.barChartLabels.push(d.created_at.slice(0, -14) + ' ' + d.created_at.slice(11, -5));
+              this.dataDate2.push(d.created_at.slice(0, -14) + ' ' + d.created_at.slice(11, -5));
             }
             const array = this.HL69.measure.slice().reverse();
-            // this.lastTemp = array[0].measurements.temperature;
-            // this.lastTime = array[0].created_at.slice(11, -5);
-            // this.lastHum = array[0].measurements.humidity;
+            this.lastTime2 = array[0].created_at.slice(11, -5);
+            this.lastHumG = array[0].measurements.humidity;
             this.IDHL = this.HL69.sensor.id;
           } else {
             console.log('sin datos coincidentes');
@@ -171,18 +173,14 @@ export class GraphicsComponent implements OnInit {
           this.ML85 = item;
           if (this.ML85.measure[0]) {
             for (const d of this.ML85.measure) {
-              // this.barChartData[0].data.push(d.measurements.temperature);
+              this.dataUV.push(d.measurements.luzUV);
             }
             for (const d of this.ML85.measure) {
-              // this.barChartData[1].data.push(d.measurements.humidity);
-            }
-            for (const d of this.ML85.measure) {
-              // this.barChartLabels.push(d.created_at.slice(0, -14) + ' ' + d.created_at.slice(11, -5));
+              this.dataDate3.push(d.created_at.slice(0, -14) + ' ' + d.created_at.slice(11, -5));
             }
             const array = this.ML85.measure.slice().reverse();
-            // this.lastTemp = array[0].measurements.temperature;
-            // this.lastTime = array[0].created_at.slice(11, -5);
-            // this.lastHum = array[0].measurements.humidity;
+            this.lastluzUV = array[0].measurements.luzUV;
+            this.lastTime3 = array[0].created_at.slice(11, -5);
             this.IDML = this.ML85.sensor.id;
           } else {
             console.log('sin datos coincidentes');
@@ -200,5 +198,21 @@ export class GraphicsComponent implements OnInit {
       const d2 = formatDate(this.selectDate2, 'yyyy-MM-dd', 'en');
       this.getData(d1, d2);
     }
+  }
+
+  showDHT(): void {
+    this.barChartData[0].data = this.dataTemp;
+    this.barChartData[1].data = this.dataHum;
+    this.barChartLabels = this.dataDate;
+  }
+
+  showML85(): void {
+    this.barChartData[0].data = this.dataHumG;
+    this.barChartLabels = this.dataDate2;
+  }
+
+  showHL69(): void {
+    this.barChartData[0].data = this.dataUV;
+    this.barChartLabels = this.dataDate3;
   }
 }

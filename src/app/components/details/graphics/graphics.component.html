@@ -4,6 +4,19 @@
     </button>
   </div>
 </div>
+<div class="row justify-content-center mb-3">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" (click)="showDHT()">Sensor de humedad y temperatura</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="showHL69()">Sensor de humedad en tierra</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="showML85()">Sensor Ultravioleta</a>
+    </li>
+  </ul>
+</div>
 <div class="row text-center">
   <div class="col">
     <div class="container">
@@ -48,13 +61,18 @@
       <div>
         <h3 class="title">Lecturas.</h3>
         <div>
-          <p class="btn primary" routerLink="sensor-details/{{this.IDDHT}}">Temperatura: {{lastTemp}}°C. {{lastTime}} horas</p>
+          <p *ngIf="this.lastTemp" class="btn text-dark" routerLink="sensor-details/{{this.IDDHT}}">
+            Temperatura: {{lastTemp}}°C. {{lastTime}} horas</p>
           <hr/>
-          <p class="succes btn" routerLink="sensor-details/{{this.IDDHT}}">Humedad: {{lastHum}}%. {{lastTime}} horas</p>
+          <p *ngIf="this.lastHum" class="text-dark btn" routerLink="sensor-details/{{this.IDDHT}}">
+            Humedad: {{lastHum}}
+            %. {{lastTime}} horas</p>
           <hr/>
-          <p class="information btn" routerLink="sensor-details/{{this.IDHL}}">Humedad de la tierra: 10%. 23/03/21 17:45 horas</p>
+          <p *ngIf="this.lastHumG" class="text-dark btn" routerLink="sensor-details/{{this.IDHL}}">Humedad de la
+            tierra: {{lastHumG}}%. {{lastTime2}} horas</p>
           <hr/>
-          <p class="danger btn" routerLink="sensor-details/{{this.IDML}}">Índice UV: 0. 23/03/21 17:45 horas</p>
+          <p *ngIf="this.lastluzUV" class="text-dark btn" routerLink="sensor-details/{{this.IDML}}">Índice
+            UV: {{lastluzUV}} {{lastTime3}} horas</p>
           <hr/>
         </div>
       </div>
