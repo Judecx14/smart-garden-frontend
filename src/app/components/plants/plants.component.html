@@ -1,3 +1,20 @@
+<div class="row justify-content-center mb-2" style="margin-top: -15px">
+  <div class="col-6">
+    <div class="form">
+      <div>
+        <label for="gardenname" class="form-label">Nombre:</label>
+        <input id="gardenname" class="form-control" type="text" readonly [(ngModel)]="garden.name">
+      </div>
+      <div>
+        <label for="gardentype" class="form-label">Direccion:</label>
+        <input id="gardentype" class="form-control" type="text" readonly [(ngModel)]="garden.location">
+      </div>
+    </div>
+    <button type="button" class="btn btn-info btn-block mt-2" data-toggle="modal"
+            data-target="#modalUpdateGarden">Editar
+    </button>
+  </div>
+</div>
 <div class="row">
   <div class="col-sm spaceUp">
     <p class="title mx-auto d-block">Mis plantas.</p>
@@ -72,6 +89,35 @@
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-outline-light" (click)="addFlowerpot()" data-dismiss="modal">
           Añadir
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalUpdateGarden" tabindex="-1" aria-labelledby="modalgarden" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-dark text-light">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel2">Editar planta</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form">
+          <div>
+            <label for="na" class="form-label">Nombre:</label>
+            <input id="na" class="form-control" type="text" [(ngModel)]="garden.name">
+          </div>
+          <div>
+            <label for="sp" class="form-label">Direccione:</label>
+            <input id="sp" class="form-control" type="text" [(ngModel)]="garden.location">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-light" (click)="updateGarden()" data-dismiss="modal">
+          Actualizar
         </button>
       </div>
     </div>

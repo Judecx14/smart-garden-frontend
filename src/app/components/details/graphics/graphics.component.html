@@ -1,4 +1,21 @@
 <div class="row justify-content-center mb-2" style="margin-top: -15px">
+  <div class="col-6">
+    <div class="form">
+      <div>
+        <label for="flowername" class="form-label">Nombre:</label>
+        <input id="flowername" class="form-control" type="text" readonly [(ngModel)]="flowerpot.name">
+      </div>
+      <div>
+        <label for="flowertype" class="form-label">Especie:</label>
+        <input id="flowertype" class="form-control" type="text" readonly [(ngModel)]="flowerpot.spice">
+      </div>
+    </div>
+    <button type="button" class="btn btn-info btn-block mt-2" data-toggle="modal"
+            data-target="#modalUpdateFlowerpot">Editar
+    </button>
+  </div>
+</div>
+<div class="row justify-content-center mb-2">
   <div class="col text-center">
     <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalAddSensor">Añadir sensor
     </button>
@@ -7,13 +24,13 @@
 <div class="row justify-content-center mb-3">
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link" (click)="showDHT()">Sensor de humedad y temperatura</a>
+      <a class="nav-link" (click)="showDHT();">Sensor de humedad y temperatura</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" (click)="showHL69()">Sensor de humedad en tierra</a>
+      <a class="nav-link" (click)="showHL69();">Sensor Ultravioleta</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" (click)="showML85()">Sensor Ultravioleta</a>
+      <a class="nav-link" (click)="showML85();">Sensor de humedad en tierra</a>
     </li>
   </ul>
 </div>
@@ -49,7 +66,7 @@
           </div>
         </div>
         <button class="btn btn-outline-primary mx-auto d-block" style="width: 65%;" mat-button mat-raised-button
-                (click)="updateData()">Actualizar
+                (click)="updateData(); showDHT()">Actualizar
         </button>
       </div>
     </div>
@@ -61,17 +78,17 @@
       <div>
         <h3 class="title">Lecturas.</h3>
         <div>
-          <p *ngIf="this.lastTemp" class="btn text-dark" routerLink="sensor-details/{{this.IDDHT}}">
+          <p class="btn text-dark" routerLink="sensor-details/{{this.IDDHT}}">
             Temperatura: {{lastTemp}}°C. {{lastTime}} horas</p>
           <hr/>
-          <p *ngIf="this.lastHum" class="text-dark btn" routerLink="sensor-details/{{this.IDDHT}}">
+          <p class="text-dark btn" routerLink="sensor-details/{{this.IDDHT}}">
             Humedad: {{lastHum}}
             %. {{lastTime}} horas</p>
           <hr/>
-          <p *ngIf="this.lastHumG" class="text-dark btn" routerLink="sensor-details/{{this.IDHL}}">Humedad de la
+          <p class="text-dark btn" routerLink="sensor-details/{{this.IDHL}}">Humedad de la
             tierra: {{lastHumG}}%. {{lastTime2}} horas</p>
           <hr/>
-          <p *ngIf="this.lastluzUV" class="text-dark btn" routerLink="sensor-details/{{this.IDML}}">Índice
+          <p class="text-dark btn" routerLink="sensor-details/{{this.IDML}}">Índice
             UV: {{lastluzUV}} {{lastTime3}} horas</p>
           <hr/>
         </div>
@@ -116,6 +133,45 @@
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-outline-light" (click)="addSensor()" data-dismiss="modal">
           Añadir
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalUpdateFlowerpot" tabindex="-1" aria-labelledby="modalflowerpot" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-dark text-light">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel2">Editar planta</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form">
+          <div>
+            <label for="na" class="form-label">Nombre:</label>
+            <input id="na" class="form-control" type="text" [(ngModel)]="flowerpot.name">
+          </div>
+          <div>
+            <label for="sp" class="form-label">Especie:</label>
+            <input id="sp" class="form-control" type="text" [(ngModel)]="flowerpot.spice">
+          </div>
+          <div>
+            <label for="categoryedit" class="form-label">Categoria:</label>
+            <select id="categoryedit" class="form-select form-select-lg mb-3 form-control"
+                    aria-label=".form-select-lg example" [(ngModel)]="flowerpot.category">
+              <option value="1">Tropical</option>
+              <option value="2">Seco</option>
+              <option value="3">Templado</option>
+              <option value="4">Frio</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-light" (click)="updateFlowerpot()" data-dismiss="modal">
+          Actualizar
         </button>
       </div>
     </div>

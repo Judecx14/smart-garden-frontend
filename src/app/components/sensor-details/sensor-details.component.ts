@@ -46,7 +46,8 @@ export class SensorDetailsComponent implements OnInit {
     this.if = this.routerActive.snapshot.params.if;
     this.getFlowerpot();
     const d = new Date();
-    const date2 = formatDate(d, 'yyyy-MM-dd', 'en');
+    const dte = d.setDate(d.getDate() + 1);
+    const date2 = formatDate(dte, 'yyyy-MM-dd', 'en');
     const dt = d.setDate(d.getDate() - 31);
     const date = formatDate(dt, 'yyyy-MM-dd', 'en');
     this.getData(date, date2);
@@ -71,6 +72,7 @@ export class SensorDetailsComponent implements OnInit {
   getData(date, date2): void {
     this.sensorService.sensorMeasureByDate(this.id, date, date2).subscribe(data => {
       this.data = data;
+      console.log(this.data);
       this.measures = data.measure.slice().reverse();
     });
   }

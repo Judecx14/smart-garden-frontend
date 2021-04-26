@@ -6,6 +6,7 @@ import {FlowerpotSensor} from '../../../classes/flowerpot-sensor';
 import {formatDate} from '@angular/common';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';
+import {Flowerpot} from '../../../classes/flowerpot';
 
 @Component({
   selector: 'app-graphics',
@@ -30,8 +31,8 @@ export class GraphicsComponent implements OnInit {
     scales: {xAxes: [{}], yAxes: [{}]},
     plugins: {
       datalabels: {
-        anchor: 'end',
-        align: 'end',
+        anchor: 'center',
+        align: 'center',
       },
     },
   };
@@ -52,7 +53,7 @@ export class GraphicsComponent implements OnInit {
       label: 'Humedad',
       backgroundColor: '#26bba7',
       hoverBackgroundColor: '#26bba7',
-    },
+    }
   ];
 
 
@@ -60,6 +61,13 @@ export class GraphicsComponent implements OnInit {
   params: Params;
   sensor: Sensor = new Sensor();
   flowerpotSensor: FlowerpotSensor = new FlowerpotSensor();
+  flowerpot: Flowerpot = {
+    id: 0,
+    name: '',
+    spice: '',
+    category: 0,
+    garden: 0
+  };
   sensors: Array<any>;
   IDDHT: number;
   IDHL: number;
@@ -103,6 +111,13 @@ export class GraphicsComponent implements OnInit {
     // @ts-ignore
     this.params = this.router.snapshot.params;
     this.setData();
+    this.getFlowerpot();
+  }
+
+  getFlowerpot(): void {
+    this.sensorService.showFlowerpot(this.params.id).subscribe(data => {
+      this.flowerpot = data;
+    });
   }
 
   setData(): void {
@@ -131,10 +146,15 @@ export class GraphicsComponent implements OnInit {
       this.barChartData[1].data = [];
       this.barChartLabels = [];
       this.data = data;
+      console.log(this.data);
       this.sensors = data.sensors;
       for (const item of this.sensors) {
         if (item.sensor.type === 'DHT-11') {
           this.DHT = item;
+          this.dataTemp = [];
+          this.dataHum = [];
+          this.dataDate = [];
+          this.IDDHT = this.DHT.sensor.id;
           if (this.DHT.measure[0]) {
             for (const d of this.DHT.measure) {
               this.dataTemp.push(d.measurements.temperature);
@@ -149,12 +169,14 @@ export class GraphicsComponent implements OnInit {
             this.lastTemp = array[0].measurements.temperature;
             this.lastTime = array[0].created_at.slice(11, -5);
             this.lastHum = array[0].measurements.humidity;
-            this.IDDHT = this.DHT.sensor.id;
           } else {
             console.log('sin datos coincidentes');
           }
         } else if (item.sensor.type === 'HL-69') {
           this.HL69 = item;
+          this.dataHumG = [];
+          this.dataDate2 = [];
+          this.IDHL = this.HL69.sensor.id;
           if (this.HL69.measure[0]) {
             for (const d of this.HL69.measure) {
               this.dataHumG.push(d.measurements.humidity);
@@ -165,12 +187,14 @@ export class GraphicsComponent implements OnInit {
             const array = this.HL69.measure.slice().reverse();
             this.lastTime2 = array[0].created_at.slice(11, -5);
             this.lastHumG = array[0].measurements.humidity;
-            this.IDHL = this.HL69.sensor.id;
           } else {
             console.log('sin datos coincidentes');
           }
         } else if (item.sensor.type === 'ML85') {
           this.ML85 = item;
+          this.dataUV = [];
+          this.dataDate3 = [];
+          this.IDML = this.ML85.sensor.id;
           if (this.ML85.measure[0]) {
             for (const d of this.ML85.measure) {
               this.dataUV.push(d.measurements.luzUV);
@@ -181,13 +205,13 @@ export class GraphicsComponent implements OnInit {
             const array = this.ML85.measure.slice().reverse();
             this.lastluzUV = array[0].measurements.luzUV;
             this.lastTime3 = array[0].created_at.slice(11, -5);
-            this.IDML = this.ML85.sensor.id;
           } else {
             console.log('sin datos coincidentes');
           }
         } else if (item.sensor.type === 'WaterPump') {
           this.WatPump = item;
         }
+        this.showDHT();
       }
     });
   }
@@ -201,18 +225,37 @@ export class GraphicsComponent implements OnInit {
   }
 
   showDHT(): void {
+    this.barChartData[1] = {
+      data: this.dataHum,
+      label: 'Humedad',
+      backgroundColor: '#26bba7',
+      hoverBackgroundColor: '#26bba7',
+    };
     this.barChartData[0].data = this.dataTemp;
+    this.barChartData[0].label = 'Temperatura';
     this.barChartData[1].data = this.dataHum;
+    this.barChartData[1].label = 'Humedad';
     this.barChartLabels = this.dataDate;
   }
 
   showML85(): void {
+    this.barChartData[1] = {};
     this.barChartData[0].data = this.dataHumG;
+    this.barChartData[0].label = 'Humedad';
     this.barChartLabels = this.dataDate2;
   }
 
   showHL69(): void {
+    this.barChartData[1] = {};
     this.barChartData[0].data = this.dataUV;
+    this.barChartData[0].label = 'Indice UV';
     this.barChartLabels = this.dataDate3;
+  }
+
+  updateFlowerpot(): void {
+    this.flowerpot.id = this.params.id;
+    this.sensorService.updateFlowerpot(this.flowerpot).subscribe(data => {
+      this.flowerpot = data;
+    });
   }
 }

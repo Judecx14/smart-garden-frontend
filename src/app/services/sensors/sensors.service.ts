@@ -134,7 +134,7 @@ export class SensorsService {
   }
 
   updateGarden(garden: Garden): Observable<any> {
-    return this.http.put(`${environment.apiRoutes}MeasureSensor/update`, garden);
+    return this.http.put(`${environment.apiRoutes}Garden/update`, garden);
   }
 
   showSensorMeasure(id: number): Observable<any> {

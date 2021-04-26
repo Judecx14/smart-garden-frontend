@@ -31,13 +31,7 @@ export class BarChartComponent implements OnInit, OnChanges {
   public barChartLabels = [];
   public barChartOptions = {
     scaleShowVerticalLines: false,
-    responsive: true,
-    plugins: {
-      datalabels: {
-        anchor: 'end',
-        align: 'end',
-      },
-    },
+    responsive: true
   };
 
   public barChartLegend = true;
