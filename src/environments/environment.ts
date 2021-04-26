@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+  production: true,
   serverRoutes: 'https://api-smart-garden.herokuapp.com/',
   apiRoutes: 'https://api-smart-garden.herokuapp.com/api/'
   // serverRoutes: 'http://127.0.0.1:3333/',
