@@ -8,7 +8,7 @@ const app = express();
 app.use(express.static('./dist/smart-garden'));
 
 app.get('/*', (req, res) =>
-    res.sendFile('./src/index.html', {root: '/smart-garden/index.html'}),
+    res.sendFile('index.html', {root: 'dist/smart-garden/'}),
 );
 
 // Start the app by listening on the default Heroku port
