@@ -4,8 +4,8 @@
 
 export const environment = {
   production: true,
-  serverRoutes: 'https://api-smart-garden.herokuapp.com/',
-  apiRoutes: 'https://api-smart-garden.herokuapp.com/api/'
+  serverRoutes: 'https://smart-garden-api-v12.herokuapp.com/',
+  apiRoutes: 'https://smart-garden-api-v12.herokuapp.com/'
   // serverRoutes: 'http://127.0.0.1:3333/',
   // apiRoutes: 'http://127.0.0.1:3333/api/'
 };
