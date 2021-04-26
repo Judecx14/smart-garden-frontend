@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": ["chart.js"],
+            "allowedCommonJsDependencies": ["chart.js", "ng2-datepicker"],
             "outputPath": "dist/SmartGarden",
             "index": "src/index.html",
             "main": "src/main.ts",
