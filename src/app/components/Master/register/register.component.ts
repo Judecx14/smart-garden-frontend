@@ -13,12 +13,12 @@ import {Router} from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   user: User;
-  timerInterval: number;
+  timerInterval: any;
   form = new FormGroup({
     name: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    password: new FormControl('', [Validators.required]),
   });
 
   constructor(private auth: AuthService, private router: Router) { }

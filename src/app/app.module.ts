@@ -35,6 +35,7 @@ import {ActivityComponent} from './components/details/activity/activity.componen
 import {ReadingComponent} from "./components/details/reading/reading.component";
 import {GraphicsComponent} from "./components/details/graphics/graphics.component";
 import {GraphComponent} from "./components/details/graph/graph.component";
+import { ActionsComponent } from './components/details/actions/actions.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import {GraphComponent} from "./components/details/graph/graph.component";
     ActivityComponent,
     ReadingComponent,
     GraphicsComponent,
-    GraphComponent
+    GraphComponent,
+    ActionsComponent
   ],
   imports: [
     BrowserModule,

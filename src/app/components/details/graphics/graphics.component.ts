@@ -7,6 +7,8 @@ import {formatDate} from '@angular/common';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';
 import {Flowerpot} from '../../../classes/flowerpot';
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 
 @Component({
   selector: 'app-graphics',

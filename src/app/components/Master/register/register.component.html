@@ -32,10 +32,9 @@
         <input type="password" class="form-control" id="psw"
                formControlName="password"
                [ngClass]="{'is-invalid': form.get('password').touched && form.get('password').invalid}"
-               placeholder="6 caracteres mínimo">
+        >
         <div *ngIf="form.get('password').touched && form.get('password').invalid" class="invalid-feedback">
           <div *ngIf="form.get('password').errors.required">Contraseña requerida</div>
-          <div *ngIf="form.get('password').errors.minlength">La contraseña deber ser mayor a 6 caractéres</div>
         </div>
       </div>
       <button [disabled]="!form.valid" class="btn btn-lg offset-3  offset-2 col-sm-6">

@@ -20,7 +20,6 @@
                    [ngClass]="{'is-invalid': form.get('password').touched && form.get('password').invalid}">
             <div *ngIf="form.get('password').touched && form.get('password').invalid" class="invalid-feedback">
               <div *ngIf="form.get('password').errors.required">Password is required</div>
-              <div *ngIf="form.get('password').errors.minlength">Password must be at least 6 characters long</div>
             </div>
           </div>
 

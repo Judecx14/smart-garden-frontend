@@ -15,13 +15,13 @@ export class LoginComponent implements OnInit {
 
   form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    password: new FormControl('', [Validators.required]),
   });
 
   message: string = null;
   user: User;
 
-  timerInterval: number;
+  timerInterval: any;
 
   constructor(private auth: AuthService, private cookieService: CookieService, private router: Router) {
   }
