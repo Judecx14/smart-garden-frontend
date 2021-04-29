@@ -15,25 +15,28 @@ export class ActionsComponent implements OnInit {
   @Input() plantId: string
 
   ws: any;
-  chat: any;
+  measures: any;
 
   ngOnInit(): void {
     this.ws = Ws("ws://api-smart-garden.herokuapp.com", {
       path: "adonis-ws"
     });
     this.ws.connect();
-    this.chat = this.ws.subscribe('measures');
-    this.chat.on('message', (data:any)=>{
+    this.measures = this.ws.subscribe('measures');
+    this.measures.on('message', (data:any)=>{
       console.log(data)
     })
   }
 
   order: string
   msg: any
+  json: any
   
   sendAction(action: string): void{
     this.order = '{ "order": '+'"'+action+'"'+', "plantID": '+this.plantId+' }'
-    this.chat.emit('message', this.order);
+    this.json = JSON.parse(this.order)
+    console.log(this.json)
+    this.measures.emit('message', this.json);
   }
 
 }
