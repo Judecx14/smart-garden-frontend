@@ -2,8 +2,11 @@
      [ngClass]="{'navbar-dark bg-dark':status}">
   <div class="container text-success">
     <div class="navbar-brand">
-      <a [routerLink]="['home']"> <img src="assets/img/agricultura.png" style="width:40px; height:40px" alt="image"></a>
-      <a class="navbar-brand ml-1 text-success" [routerLink]="['home']">BlackCat Intelligent GreenHouse</a>
+      <a *ngIf="!status" [routerLink]="['home']"> <img src="assets/img/logo.png" style="width:40px; height:30px; margin-right: 10px;" alt="image"></a>
+      <a *ngIf="status" [routerLink]="['home']"> <img src="assets/img/logow.png" style="width:40px; height:40px; margin-right: 10px;" alt="image"></a>
+
+      <a  *ngIf="!status"  class="navbar-brand ml-1 text-success" [routerLink]="['home']" > Smart Garden</a>
+      <a  *ngIf="status" style="color: white;" class="navbar-brand ml-1" [routerLink]="['home']" >Smart Garden</a>
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,22 +15,28 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link text-success" [routerLink]="['home']">Home</a>
+          <a *ngIf="!status" class="nav-link text-success" [routerLink]="['home']">Inicio</a>
+          <a *ngIf="status" style="color: white;" class="nav-link" [routerLink]="['home']">Inicio</a>
         </li>
         <li class="nav-item" routerLinkActive="active" *ngIf="auth.navItems()">
-          <a class="nav-link text-success" [routerLink]="['profile']">Perfil</a>
+          <a *ngIf="!status" class="nav-link text-success" [routerLink]="['profile']">Perfil</a>
+          <a *ngIf="status" style="color: white;" class="nav-link" [routerLink]="['profile']">Perfil</a>
         </li>
         <li class="nav-item" routerLinkActive="active" *ngIf="auth.navItems()">
-          <a class="nav-link text-success" [routerLink]="['gardens']">Jardines</a>
+          <a *ngIf="!status" class="nav-link text-success" [routerLink]="['gardens']">Jardines</a>
+          <a *ngIf="status" style="color: white;" class="nav-link" [routerLink]="['gardens']">Jardines</a>
         </li>
         <li class="nav-item" routerLinkActive="active" *ngIf="!auth.navItems()">
-          <a class="nav-link text-success" [routerLink]="['login']">Login</a>
+          <a *ngIf="!status" class="nav-link text-success" [routerLink]="['login']">Iniciar Sesión</a>
+          <a *ngIf="status" style="color: white;" class="nav-link" [routerLink]="['login']">Iniciar Sesión</a>
         </li>
         <li class="nav-item" routerLinkActive="active" *ngIf="!auth.navItems()">
-          <a class="nav-link text-success" [routerLink]="['register']">Register</a>
+          <a *ngIf="!status" class="nav-link text-success" [routerLink]="['register']">Registrarse</a>
+          <a *ngIf="status" style="color: white;" class="nav-link" [routerLink]="['register']">Registrarse</a>
         </li>
         <li class="nav-item" routerLinkActive="active" *ngIf="auth.navItems()">
-          <a (click)="auth.logout()" class="nav-link text-success" [routerLink]="">Logout</a>
+          <a *ngIf="!status" (click)="auth.logout()" class="nav-link text-success" [routerLink]="">Cerrar Sesión</a>
+          <a *ngIf="status" style="color: white;" (click)="auth.logout()" class="nav-link" [routerLink]="">Cerrar Sesión</a>
         </li>
       </ul>
     </div>

@@ -1,37 +1,48 @@
-<div class="row justify-content-center">
-  <div class="col-11 col-md-6">
-    <div class="card grad text-dark" style="height: 61.5vh">
-      <div class="card-header x ml-2">
-        <img src="assets/img/account_circle.png" style="width: 40px; height: 40px; align-self: center" alt="login">
+<br><br><br>
+<div class="">
+  <div class="row">
+    <div class="col-6">
+      <div class="">
+        <div class="card grad text-dark" style="height: 67.5vh">
+          <div class="card-header x ml-2">
+            <img src="assets/img/account_circle.png" style="width: 40px; height: 40px; align-self: center" alt="login">
+          </div>
+          <div class="card-body">
+            <h2>Inicar sesión.</h2>
+            <br><br>
+            <form name="form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
+              <div class="form-group mb-3">
+                <input type="text" placeholder="Email" class="form-control form-pretty" formControlName="email"
+                       [ngClass]="{'is-invalid': form.get('email').touched && form.get('email').invalid}">
+                <div *ngIf="form.get('email').touched && form.get('email').invalid" class="invalid-feedback">
+                  <div *ngIf="form.get('email').errors.required">Correo electronico requerido.</div>
+                  <div *ngIf="form.get('email').errors.email">Correo invalido.</div>
+                </div>
+              </div>
+              <div class="form-group mb-5">
+                <input type="password" placeholder="Password" class="form-control form-pretty" formControlName="password"
+                       [ngClass]="{'is-invalid': form.get('password').touched && form.get('password').invalid}">
+                <div *ngIf="form.get('password').touched && form.get('password').invalid" class="invalid-feedback">
+                  <div *ngIf="form.get('password').errors.required">Contraseña requerida</div>
+                </div>
+              </div>
+    
+            <button [disabled]="!form.valid" class="btn btn-block text-light" style="background: #C49473">
+                Iniciar sesión
+              </button>
+              <br>
+              <a name="singin" [routerLink]="['/register']" class="text-success text-center mx-auto d-block">Crear cuenta nueva</a>
+    
+              <div class="text-center mb-5">
+                <label *ngIf="message" class="text-danger" style="font-size: 1.3em">{{message}}</label>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
-      <div class="card-body">
-        <h1>Login</h1>
-        <form name="form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
-          <div class="form-group mb-3">
-            <input type="text" placeholder="Email" class="form-control form-pretty" formControlName="email"
-                   [ngClass]="{'is-invalid': form.get('email').touched && form.get('email').invalid}">
-            <div *ngIf="form.get('email').touched && form.get('email').invalid" class="invalid-feedback">
-              <div *ngIf="form.get('email').errors.required">Email is required</div>
-              <div *ngIf="form.get('email').errors.email">Email must be a valid email addres</div>
-            </div>
-          </div>
-          <div class="form-group mb-5">
-            <input type="password" placeholder="Password" class="form-control form-pretty" formControlName="password"
-                   [ngClass]="{'is-invalid': form.get('password').touched && form.get('password').invalid}">
-            <div *ngIf="form.get('password').touched && form.get('password').invalid" class="invalid-feedback">
-              <div *ngIf="form.get('password').errors.required">Password is required</div>
-            </div>
-          </div>
-
-          <button [disabled]="!form.valid" class="btn btn-block text-light" style="background: saddlebrown">
-            LogIn
-          </button>
-          <div class="text-center mb-5">
-            <label *ngIf="message" class="text-danger" style="font-size: 1.3em">{{message}}</label>
-          </div>
-          <a name="singin" [routerLink]="['/register']" class="text-info text-center ml-1">Crear cuenta nueva</a>
-        </form>
-      </div>
+    </div>
+    <div class="col-6">
+      <img src="assets\img\undraw_Login_re_4vu2.svg" alt="" style="width: 110%;">
     </div>
   </div>
 </div>

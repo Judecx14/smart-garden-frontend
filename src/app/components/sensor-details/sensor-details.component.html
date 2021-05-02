@@ -1,9 +1,12 @@
-<div class="row mb-3">
-  <div class="col text-center"><h2>Detalles del sensor</h2></div>
-</div>
+
+<br>
 <div class="row mb-5">
   <div class="col-4">
     <div class="form">
+      <h3 style="color: #535353;">Detalles del sensor <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+      </svg></h3>
+
       <div>
         <label for="flowerpot" class="form-label">Planta:</label>
         <input id="flowerpot" class="form-control" type="text" readonly [(ngModel)]="flowerpot.name">
@@ -22,24 +25,25 @@
     <app-bar-chart [data]="data"></app-bar-chart>
   </div>
 </div>
-<div class=" row mb-3
-    ">
-  <div class="col text-center">
-    <h3>TABLE</h3>
+
+<div class="row">
+  <div class="col-7">
+    <h4 style="color: #535353;">Historial </h4>
+  </div>
+  <div class="col-5" >
+    <div style="margin-left: 160px;">
+      <input class="form" type="date" [(ngModel)]="selectDate"/>
+      <button class="btn text-light ml-3" (click)="update()" style="background-color: #53A84D;">Actualizar</button>
+    </div>   
+
   </div>
 </div>
-<div class="row justify-content-center mb-3">
-  <div class="col-8 text-center">
-    <h5>Seleccion de Fecha</h5>
-    <input class="form" type="date" [(ngModel)]="selectDate"/>
-    <button class="btn btn-primary ml-3" (click)="update()">Actualizar</button>
-  </div>
-</div>
+<br>
 <div class="row">
   <div class="col">
     <div class="table-responsive"></div>
     <table class="table" style="overflow-y: scroll; height: 100px">
-      <tr class="text-info">
+      <tr class="" style="font-weight: bold;">
         <td>Temperatura</td>
         <td>Humedad</td>
         <td>Fecha/Hora</td>

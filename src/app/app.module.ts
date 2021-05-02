@@ -36,6 +36,7 @@ import {ReadingComponent} from "./components/details/reading/reading.component";
 import {GraphicsComponent} from "./components/details/graphics/graphics.component";
 import {GraphComponent} from "./components/details/graph/graph.component";
 import { ActionsComponent } from './components/details/actions/actions.component';
+import { FooterNewComponent } from './footer-new/footer-new.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { ActionsComponent } from './components/details/actions/actions.component
     ReadingComponent,
     GraphicsComponent,
     GraphComponent,
-    ActionsComponent
+    ActionsComponent,
+    FooterNewComponent
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,10 @@
-<div class="row">
-  <div class="col"><h2>PERFIL</h2></div>
-</div>
-<div class="row">
-  <div class="col-3">
-    <img src="assets/img/team.png" alt="profile" style="height: 200px; width: 200px">
-  </div>
-  <div class="col-6">
+
+
+<div class="row" style="border: 2px solid #CACACA; border-radius: 25px; padding: 20px;">
+  <div class="col-4" >
+    <div class=""><h3>Perfil </h3></div><br><br>
+    <img src="assets/img/undraw_male_avatar_323b.svg" class="d-block mx-auto" alt="profile" style="width: 40%;">
+    <br>
     <div class="form">
       <div>
         <label for="name" class="form-label">Nombre:</label>
@@ -20,24 +19,37 @@
         <input id="mail" class="form-control" type="text" readonly [(ngModel)]="details.email">
       </div>
     </div>
-    <button type="button" class="btn btn-info btn-block mt-2" data-toggle="modal"
+    <br>
+    <button type="button" class="btn text-light btn-block mt-2 cafeboton" data-toggle="modal"
             data-target="#modalUser">Editar
     </button>
   </div>
-  <div class="col-3">
-    <img src="assets/img/el-planeta-tierra.png" alt="world" style="height: 200px; width: 200px">
+  <div class="col-8">
+    <div  style="margin-left: 70px;" >
+     
+      <img src="assets/img/undraw_preferences_popup_wbfw.svg" alt="" class="" style="width: 100%">
+      <br><br>
+      <h5 style="color: gray;">Información de usuario.</h5>
+      <p>En este panel podras editar tu información personal respecto a tu perfil, toda tu información es privada, no compartas tu contraseña con nadie. Smart Garden nunca te pedira tu contraseña.</p>
+
+    </div>
+
   </div>
+  
 </div>
 
 <!-- Modal User -->
-<div class="modal fade" id="modalUser" tabindex="-1" aria-labelledby="modalUser" aria-hidden="true">
+<div class="modal fade" id="modalUser" tabindex="-1" aria-labelledby="modalUser" aria-hidden="true" style="margin-top: 100px;">
   <div class="modal-dialog">
     <div class="modal-content bg-dark text-light">
-      <div class="modal-header">
-        <h5 class="modal-title" id="ModalLabel1">Editar usuario</h5>
-        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-      </div>
+      
       <div class="modal-body">
+        <div class="">
+          <h5 class="modal-title" id="ModalLabel1">Editar perfil <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+          </svg></h5>
+        </div>
         <div class="form">
           <div>
             <label for="nameedit" class="form-label">Nombre:</label>
@@ -52,13 +64,25 @@
             <input id="mailedit" class="form-control" type="text" [(ngModel)]="details.email">
           </div>
         </div>
+        <br>
+        <div class="">
+          <div class="row">
+            <div class="col-6">
+              <button type="button" style="width: 100%;" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+
+            </div>
+            <div class="col-6" >
+              <button type="button" style="width: 100%;" class="btn btn-outline-light" (click)="updateUser()" data-dismiss="modal">
+                Actualizar
+              </button>
+            </div>
+            
+          </div>
+          
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-outline-light" (click)="updateUser()" data-dismiss="modal">
-          Actualizar
-        </button>
-      </div>
+      
     </div>
   </div>
 </div>
+<br><br><br><br>

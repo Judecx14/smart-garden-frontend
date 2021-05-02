@@ -1,10 +1,33 @@
+
+
 h3{
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: #027373;
-  font-size: 40px;
+  color: gray;
 }
-h5{
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: #027373;
-  font-size: 30px;
+
+.buttonAdd{
+  width: 400px;
+  text-align: center;
+  font-size: 40px;
+  height: 100px;
+  border-width: 1px;
+  border-color: #D2A880;
+  color: #D2A880;
+}
+
+.buttonAdd:hover{
+  background-color:#D2A880;
+  color: white;
+}
+
+.gardens{
+  padding: 10px;
+  border-color: #B4B4B4;
+  color: #838383;
+}
+
+.gardens:hover{
+  background-color: #42B53A;
+  color: white;
+  border-color: #42B53A;
+  cursor: pointer;
 }

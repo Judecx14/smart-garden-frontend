@@ -1,40 +1,66 @@
-<div class="container p-4">
+<div class="container">
   <div class="row">
-    <div class="col-lg-5 col-md-7 mb-4 mb-md-0">
-      <h3>Mis Jardines</h3>
-      <input style="align-items: flex-start; width: 400px; height: 100px;" type="button" class="btn btn-primary"
+    <div class="col-6">
+      <h3><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+        <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+      </svg> Mis Jardines</h3>
+      
+      <!--<input style="align-items: flex-start; width: 400px; height: 100px;" type="button" class="btn btn-primary"
              name="+" value="+" data-toggle="modal"
-             data-target="#modalGarden">
+             data-target="#modalGarden"
+      class="buttonAdd"
+             >-->
       <br>
-      <div style="overflow-y: scroll; height: 50vh;">
+      <button type="button" class="btn btn-lg buttonAdd"
+            data-toggle="modal"
+            data-target="#modalGarden">
+      +
+    </button>
+      <div class="" style="overflow-y: scroll; height: 50vh;">
         <div *ngFor="let garden of gardens" routerLink="flowerpots/{{garden.id}}">
-          <div class="card bg-primary mt-2" style="align-items: flex-start; width: 400px; height: 100px">
-            <div class="card-body">
-              <h5 class="text-light">{{garden.name}}</h5>
-              <p class="text-light">{{garden.location}}</p>
-            </div>
+          <div class="card bg mt-2 gardens" style="width: 400px; height: 100px;">
+              <div class="row">
+                <div class="col-6">
+                  <h5>{{garden.name}}</h5>
+                  <p>{{garden.location}}</p>
+                </div>
+                <div class="col-6">
+                  <div style="margin-top: 35px; margin-left: 130px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-flower2" viewBox="0 0 16 16">
+                      <path d="M8 16a4 4 0 0 0 4-4 4 4 0 0 0 0-8 4 4 0 0 0-8 0 4 4 0 1 0 0 8 4 4 0 0 0 4 4zm3-12c0 .073-.01.155-.03.247-.544.241-1.091.638-1.598 1.084A2.987 2.987 0 0 0 8 5c-.494 0-.96.12-1.372.331-.507-.446-1.054-.843-1.597-1.084A1.117 1.117 0 0 1 5 4a3 3 0 0 1 6 0zm-.812 6.052A2.99 2.99 0 0 0 11 8a2.99 2.99 0 0 0-.812-2.052c.215-.18.432-.346.647-.487C11.34 5.131 11.732 5 12 5a3 3 0 1 1 0 6c-.268 0-.66-.13-1.165-.461a6.833 6.833 0 0 1-.647-.487zm-3.56.617a3.001 3.001 0 0 0 2.744 0c.507.446 1.054.842 1.598 1.084.02.091.03.174.03.247a3 3 0 1 1-6 0c0-.073.01-.155.03-.247.544-.242 1.091-.638 1.598-1.084zm-.816-4.721A2.99 2.99 0 0 0 5 8c0 .794.308 1.516.812 2.052a6.83 6.83 0 0 1-.647.487C4.66 10.869 4.268 11 4 11a3 3 0 0 1 0-6c.268 0 .66.13 1.165.461.215.141.432.306.647.487zM8 9a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              
+
           </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-      <img src="assets/img/jardineria.png" width="200" height="200">
+    <div class="col-6">
+      <br><br>
+      <img src="assets/img/undraw_House_searching_re_stk8.svg" style="width: 100%;">
+      <div class="">
+        <br>
+        <h4 style="color: #434343; font-weight: 500;">Información de panel.</h4>
+        <p>En este apartado podrás encontrar tus jardines y podrás crear nuevos para asi monitorear a tus plantas.</p>
+      </div>
     </div>
-    <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
-      <h5 style="padding-top: 40%;">Información de panel.</h5>
-      <p>En este apartado podrás encontrar tus jardines y podrás crear nuevos para asi monitorear a tus plantas.</p>
-    </div>
+    
   </div>
 </div>
 
-<div class="modal fade" id="modalGarden" tabindex="-1" aria-labelledby="modalGarden" aria-hidden="true">
+<div class="modal fade" id="modalGarden" tabindex="-1" aria-labelledby="modalGarden" aria-hidden="true" style="margin-top: 100px;">
   <div class="modal-dialog">
     <div class="modal-content bg-dark text-light">
-      <div class="modal-header">
-        <h5 class="modal-title" id="ModalLabel1">Añadir Jardin</h5>
-        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-      </div>
       <div class="modal-body">
+        <h5 class="modal-title" id="ModalLabel1">Añadir Jardin <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+          <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+        </svg></h5>
         <div class="form">
           <div>
             <label for="nameedit" class="form-label">Nombre:</label>
@@ -45,13 +71,22 @@
             <input id="lastnameedit" class="form-control" type="text" [(ngModel)]="newGarden.location">
           </div>
         </div>
+        <br>
+        <div class="row">
+          <div class="col-6">
+            <button type="button" class="btn btn-outline-secondary" style="width: 100%;" data-dismiss="modal">Cerrar</button>
+  
+          </div>
+          <div class="col-6">
+            <button type="button" class="btn btn-outline-light" style="width: 100%;" (click)="addGarden()" data-dismiss="modal">
+              Añadir
+            </button>
+          </div>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-outline-light" (click)="addGarden()" data-dismiss="modal">
-          Añadir
-        </button>
-      </div>
+
+
+
     </div>
   </div>
 </div>

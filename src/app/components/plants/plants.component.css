@@ -9,19 +9,23 @@
 .title{
   color: #117c7c;
   font-size: 40px;
-  text-align: center;
+  
 }
 
 .buttonAdd{
-  margin-top: 25px;
   width: 400px;
   text-align: center;
-  font-size: 50px;
-  height: 125px;
-  border-width: 2px;
-  border-radius: 0%;
+  font-size: 40px;
+  height: 100px;
+  border-width: 1px;
+  border-color: #D2A880;
+  color: #D2A880;
 }
 
+.buttonAdd:hover{
+  background-color:#D2A880;
+  color: white;
+}
 
 .spaceTxt{
   width: 60%;
@@ -40,5 +44,19 @@
   font-size: 20px;
   font-weight: bold;
   color: #454545;
-  text-align: center;
+  
+}
+
+
+.plants{
+  padding: 2px;
+  border-color: #B4B4B4;
+  color: #838383;
+}
+
+.plants:hover{
+  background-color: #42B53A;
+  color: white;
+  border-color: #42B53A;
+  cursor: pointer;
 }
