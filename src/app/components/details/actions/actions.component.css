@@ -11,3 +11,40 @@
 .sizeA:hover{
     color: white;
 }
+
+.box {
+    position:relative;
+    overflow:hidden;
+    color: white;
+}
+
+.box:disabled {
+    cursor: not-allowed;
+}
+
+.box:before {
+    content:"";
+    position:absolute;
+    width:400px;
+    height:400px;
+    background:#00acee;
+    left:50%;
+    color: white;
+    transform:translateX(-50%);
+    border-radius:35%;
+    animation:fill 15s ease-in-out infinite;
+    z-index:-1;
+    transition-timing-function: steps(15, end);
+}
+
+
+@keyframes fill {
+    from {
+      top:160px;
+      transform:translateX(-50%) rotate(0deg);
+    }
+    to {
+      top:-50px;
+      transform:translateX(-50%) rotate(360deg);
+    }
+  }

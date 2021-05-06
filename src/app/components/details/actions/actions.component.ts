@@ -17,6 +17,8 @@ export class ActionsComponent implements OnInit {
   ws: any;
   measures: any;
 
+
+  
   ngOnInit(): void {
     this.ws = Ws("ws://api-smart-garden.herokuapp.com", {
       path: "adonis-ws"
@@ -26,17 +28,42 @@ export class ActionsComponent implements OnInit {
     this.measures.on('message', (data:any)=>{
       console.log(data)
     })
+
   }
+
 
   order: string
   msg: any
   json: any
+  water: boolean
+  iluminite: boolean
   
   sendAction(action: string): void{
-    this.order = '{ "order": '+'"'+action+'"'+', "plantID": '+this.plantId+' }'
-    this.json = JSON.parse(this.order)
-    console.log(this.json)
-    this.measures.emit('message', this.json);
+    if (action == "iluminar" || action == "apagar"){
+      this.iluminite = !this.iluminite
+      this.order = '{ "order": '+'"'+action+'"'+', "plantID": '+this.plantId+' }'
+      this.json = JSON.parse(this.order)
+      console.log(this.json)
+      this.measures.emit('message', this.json);
+    }
+    if (action == "regar"){
+      console.log("Hola soy primer water", this.water)
+      this.water = !this.water
+      console.log("Hola soy water despues de operacion", this.water)
+      this.order = '{ "order": '+'"'+action+'"'+', "plantID": '+this.plantId+' }'
+      this.json = JSON.parse(this.order)
+      console.log(this.json)
+      this.measures.emit('message', this.json);
+      setTimeout(()=>{
+        this.water = false
+        console.log("Hola soy water despues de 15", this.water)
+      }, 15000)  
+    }
+    
   }
+
+
+
+
 
 }

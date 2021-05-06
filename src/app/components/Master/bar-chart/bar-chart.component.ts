@@ -13,6 +13,8 @@ export class BarChartComponent implements OnInit, OnChanges {
   dataTemp = [];
   dataHum = [];
   dataLab = [];
+  dataGHUM = [];
+  dataUVI = [];
 
   public barChartData: ChartDataSets[] = [
     {
@@ -47,18 +49,56 @@ export class BarChartComponent implements OnInit, OnChanges {
     if (changes.data.currentValue !== changes.data.previousValue) {
       console.log(this.data);
       if (this.data.measure) {
-        for (const d of this.data.measure) {
-          this.dataTemp.push(d.measurements.temperature);
+        if (this.data.data.type === 'DHT-11') {
+          for (const d of this.data.measure) {
+            this.dataTemp.push(d.measurements.temperature);
+          }
+          for (const d of this.data.measure) {
+            this.dataHum.push(d.measurements.humidity);
+          }
+          for (const d of this.data.measure) {
+            this.dataLab.push(d.created_at.slice(5, -14));
+          }
+          this.barChartData[0].data = this.dataTemp.slice().reverse().slice(0, 10);
+          this.barChartData[1].data = this.dataHum.slice().reverse().slice(0, 10);
+          this.barChartLabels = this.dataLab.slice().reverse().slice(0, 10);
         }
-        for (const d of this.data.measure) {
-          this.dataHum.push(d.measurements.humidity);
+        if (this.data.data.type === 'HL-69') {
+          for (const d of this.data.measure) {
+            this.dataGHUM.push(d.measurements.grHumidity);
+          }
+          for (const d of this.data.measure) {
+            this.dataLab.push(d.created_at.slice(5, -14));
+          }
+          this.barChartData = [
+            {
+              data: [],
+              label: 'Humedad de la tierra',
+              backgroundColor: '#31e15f',
+              hoverBackgroundColor: '#31e15f',
+            }
+          ];
+          this.barChartData[0].data = this.dataGHUM.slice().reverse().slice(0, 10);
+          this.barChartLabels = this.dataLab.slice().reverse().slice(0, 10);
         }
-        for (const d of this.data.measure) {
-          this.dataLab.push(d.created_at.slice(5, -14));
+        if (this.data.data.type === 'ML85') {
+          for (const d of this.data.measure) {
+            this.dataUVI.push(d.measurements.uvIntensity);
+          }
+          for (const d of this.data.measure) {
+            this.dataLab.push(d.created_at.slice(5, -14));
+          }
+          this.barChartData = [
+            {
+              data: [],
+              label: 'Indice UV',
+              backgroundColor: '#31e15f',
+              hoverBackgroundColor: '#31e15f',
+            }
+          ];
+          this.barChartData[0].data = this.dataUVI.slice().reverse().slice(0, 10);
+          this.barChartLabels = this.dataLab.slice().reverse().slice(0, 10);
         }
-        this.barChartData[0].data = this.dataTemp.slice().reverse().slice(0, 10);
-        this.barChartData[1].data = this.dataHum.slice().reverse().slice(0, 10);
-        this.barChartLabels = this.dataLab.slice().reverse().slice(0, 10);
       }
     }
   }

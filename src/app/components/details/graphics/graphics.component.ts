@@ -31,17 +31,19 @@ export class GraphicsComponent implements OnInit {
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
     scales: {xAxes: [{}], yAxes: [{}]},
-    plugins: {
-      datalabels: {
-        anchor: 'center',
-        align: 'center',
-      },
-    },
+    plugins:{
+      datalabels:{
+        display:false
+      }
+    }
+  
   };
 
   public barChartLabels: Label[] = this.dataDate;
-  public barChartType: ChartType = 'bar';
+  public barChartType: ChartType = 'line';
   public barChartLegend = true;
+
+
 
   public barChartData: ChartDataSets[] = [
     {
@@ -49,12 +51,18 @@ export class GraphicsComponent implements OnInit {
       label: 'Temperatura',
       backgroundColor: '#31e15f',
       hoverBackgroundColor: '#31e15f',
+      borderColor:'#31e15f',
+      pointBackgroundColor:'#2B9606',
+      pointHoverBorderColor:'#2B9606',
+      fill:false
     },
     {
       data: this.dataHum,
       label: 'Humedad',
       backgroundColor: '#26bba7',
       hoverBackgroundColor: '#26bba7',
+      borderColor:'#26bba7',
+      fill:false
     }
   ];
 
@@ -181,14 +189,14 @@ export class GraphicsComponent implements OnInit {
           this.IDHL = this.HL69.sensor.id;
           if (this.HL69.measure[0]) {
             for (const d of this.HL69.measure) {
-              this.dataHumG.push(d.measurements.humidity);
+              this.dataHumG.push(d.measurements.grHumidity);
             }
             for (const d of this.HL69.measure) {
               this.dataDate2.push(d.created_at.slice(0, -14) + ' ' + d.created_at.slice(11, -5));
             }
             const array = this.HL69.measure.slice().reverse();
             this.lastTime2 = array[0].created_at.slice(11, -5);
-            this.lastHumG = array[0].measurements.humidity;
+            this.lastHumG = array[0].measurements.grHumidity;
           } else {
             console.log('sin datos coincidentes');
           }
@@ -199,13 +207,13 @@ export class GraphicsComponent implements OnInit {
           this.IDML = this.ML85.sensor.id;
           if (this.ML85.measure[0]) {
             for (const d of this.ML85.measure) {
-              this.dataUV.push(d.measurements.luzUV);
+              this.dataUV.push(d.measurements.uvIntensity);
             }
             for (const d of this.ML85.measure) {
               this.dataDate3.push(d.created_at.slice(0, -14) + ' ' + d.created_at.slice(11, -5));
             }
             const array = this.ML85.measure.slice().reverse();
-            this.lastluzUV = array[0].measurements.luzUV;
+            this.lastluzUV = array[0].measurements.uvIntensity;
             this.lastTime3 = array[0].created_at.slice(11, -5);
           } else {
             console.log('sin datos coincidentes');
@@ -232,6 +240,7 @@ export class GraphicsComponent implements OnInit {
       label: 'Humedad',
       backgroundColor: '#26bba7',
       hoverBackgroundColor: '#26bba7',
+      fill:false
     };
     this.barChartData[0].data = this.dataTemp;
     this.barChartData[0].label = 'Temperatura';
