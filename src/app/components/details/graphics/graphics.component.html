@@ -25,7 +25,7 @@
         <app-actions [plantId]="this.params.id"></app-actions>
       </div>
     </div>
-    
+
 
     <br>
     <div class="row">
@@ -67,14 +67,15 @@
     <div class="container">
       <div class="content-graph">
         <div class="graph size-graph mx-auto d-block">
-          <div> 
-            <div>
+          <div style="height: 600px; width: 1080px; overflow-x: scroll">
+            <div id="canv" style="height: 560px;">
               <canvas baseChart
                       [datasets]="barChartData"
                       [labels]="barChartLabels"
-                      [options]="barChartOptions"
+                      [options]="lineChartOptions"
                       [legend]="barChartLegend"
-                      [chartType]="barChartType">
+                      [chartType]="barChartType"
+                      [plugins]="lineChartPlugins">
               </canvas>
             </div>
           </div>
@@ -82,11 +83,11 @@
         <div class="inputs">
           <div class="row">
             <div class="col-sm">
-              
+
               <input class="form-control" type="date" [(ngModel)]="selectDate"/>
             </div>
             <div class="col-sm">
-              
+
               <input class="form-control" type="date" [(ngModel)]="selectDate2"/>
             </div>
           </div>

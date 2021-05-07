@@ -4,11 +4,12 @@ import {SensorsService} from '../../../services/sensors/sensors.service';
 import {Sensor} from '../../../classes/sensor';
 import {FlowerpotSensor} from '../../../classes/flowerpot-sensor';
 import {formatDate} from '@angular/common';
-import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
+import {Chart, ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';
 import {Flowerpot} from '../../../classes/flowerpot';
-import "core-js/stable";
-import "regenerator-runtime/runtime";
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+import zoomPlugin from 'chartjs-plugin-zoom';
 
 @Component({
   selector: 'app-graphics',
@@ -27,22 +28,38 @@ export class GraphicsComponent implements OnInit {
   constructor(private router: ActivatedRoute, private sensorService: SensorsService) {
   }
 
-  public barChartOptions: ChartOptions = {
+  public lineChartPlugins = [zoomPlugin];
+  public lineChartOptions: ChartOptions = {
     responsive: true,
-    // We use these empty structures as placeholders for dynamic theming.
-    scales: {xAxes: [{}], yAxes: [{}]},
-    plugins:{
-      datalabels:{
-        display:false
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        ticks: {
+          stepSize: 1
+        }
+      }], yAxes: [{}]
+    },
+    plugins: {
+      zoom: {
+        zoom: {
+          enabled: true,
+          mode: 'x',
+        },
+        pan: {
+          enabled: true,
+          mode: 'x',
+        }
+      },
+      datalabels: {
+        display: false
       }
     }
-  
+
   };
 
   public barChartLabels: Label[] = this.dataDate;
   public barChartType: ChartType = 'line';
   public barChartLegend = true;
-
 
 
   public barChartData: ChartDataSets[] = [
@@ -51,18 +68,18 @@ export class GraphicsComponent implements OnInit {
       label: 'Temperatura',
       backgroundColor: '#31e15f',
       hoverBackgroundColor: '#31e15f',
-      borderColor:'#31e15f',
-      pointBackgroundColor:'#2B9606',
-      pointHoverBorderColor:'#2B9606',
-      fill:false
+      borderColor: '#31e15f',
+      pointBackgroundColor: '#2B9606',
+      pointHoverBorderColor: '#2B9606',
+      fill: false
     },
     {
       data: this.dataHum,
       label: 'Humedad',
       backgroundColor: '#26bba7',
       hoverBackgroundColor: '#26bba7',
-      borderColor:'#26bba7',
-      fill:false
+      borderColor: '#26bba7',
+      fill: false
     }
   ];
 
@@ -173,7 +190,7 @@ export class GraphicsComponent implements OnInit {
               this.dataHum.push(d.measurements.humidity);
             }
             for (const d of this.DHT.measure) {
-              this.dataDate.push(d.created_at.slice(0, -14) + ' ' + d.created_at.slice(11, -5));
+              this.dataDate.push((d.created_at.slice(0, -14) + ' ' + d.created_at.slice(11, -5)));
             }
             const array = this.DHT.measure.slice().reverse();
             this.lastTemp = array[0].measurements.temperature;
@@ -192,7 +209,7 @@ export class GraphicsComponent implements OnInit {
               this.dataHumG.push(d.measurements.grHumidity);
             }
             for (const d of this.HL69.measure) {
-              this.dataDate2.push(d.created_at.slice(0, -14) + ' ' + d.created_at.slice(11, -5));
+              this.dataDate2.push((d.created_at.slice(0, -14) + ' ' + d.created_at.slice(11, -5)));
             }
             const array = this.HL69.measure.slice().reverse();
             this.lastTime2 = array[0].created_at.slice(11, -5);
@@ -210,7 +227,7 @@ export class GraphicsComponent implements OnInit {
               this.dataUV.push(d.measurements.uvIntensity);
             }
             for (const d of this.ML85.measure) {
-              this.dataDate3.push(d.created_at.slice(0, -14) + ' ' + d.created_at.slice(11, -5));
+              this.dataDate3.push((d.created_at.slice(0, -14) + ' ' + d.created_at.slice(11, -5)));
             }
             const array = this.ML85.measure.slice().reverse();
             this.lastluzUV = array[0].measurements.uvIntensity;
@@ -240,27 +257,31 @@ export class GraphicsComponent implements OnInit {
       label: 'Humedad',
       backgroundColor: '#26bba7',
       hoverBackgroundColor: '#26bba7',
-      fill:false
+      fill: false
     };
-    this.barChartData[0].data = this.dataTemp;
+    this.barChartData[0].data = this.dataTemp.slice().reverse().slice(0, 50);
     this.barChartData[0].label = 'Temperatura';
-    this.barChartData[1].data = this.dataHum;
+    this.barChartData[1].data = this.dataHum.slice().reverse().slice(0, 50);
     this.barChartData[1].label = 'Humedad';
-    this.barChartLabels = this.dataDate;
+    this.barChartLabels = this.dataDate.slice().reverse().slice(0, 50);
   }
 
   showML85(): void {
-    this.barChartData[1] = {};
-    this.barChartData[0].data = this.dataHumG;
+    if (this.barChartData.length > 1) {
+      this.barChartData.pop();
+    }
+    this.barChartData[0].data = this.dataHumG.slice().reverse().slice(0, 150);
     this.barChartData[0].label = 'Humedad';
-    this.barChartLabels = this.dataDate2;
+    this.barChartLabels = this.dataDate2.slice().reverse().slice(0, 150);
   }
 
   showHL69(): void {
-    this.barChartData[1] = {};
-    this.barChartData[0].data = this.dataUV;
+    if (this.barChartData.length > 1) {
+      this.barChartData.pop();
+    }
+    this.barChartData[0].data = this.dataUV.slice().reverse().slice(0, 150);
     this.barChartData[0].label = 'Indice UV';
-    this.barChartLabels = this.dataDate3;
+    this.barChartLabels = this.dataDate3.slice().reverse().slice(0, 150);
   }
 
   updateFlowerpot(): void {
